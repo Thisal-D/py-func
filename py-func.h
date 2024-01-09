@@ -4,7 +4,8 @@
 #include <vector>
 #include <string>
 
-void __fix_index_range(int& start_index, int& end_index, size_t size);
+template<typename T>
+void __fix_index_range(T& start_index, T& end_index, size_t size);
 
 namespace py {
     template<typename T>
