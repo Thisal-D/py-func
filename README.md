@@ -382,10 +382,10 @@
             count is 2
 
 
-- ## 4 . join 
+- ## 5 . join 
     - The count method returns the number of elements with the specified value in Iterable. eg:- arrays, template arrays, vectors and strings
 
-    ### 4.1 . join strings
+    ### 5.1 . join strings
 
     ### ``py::join(std::string source, type join_by);``
 
@@ -409,7 +409,7 @@
 
         
 
-    ### 4.2 . join vectors
+    ### 5.2 . join vectors
     ### ``py::join(std::vector<type> source, type join_by);``
 
     - types 
@@ -432,7 +432,7 @@
 
 
 
-    ### 4.3 . join arrays
+    ### 5.3 . join arrays
 
     ### ``py::join<type, size>(*array, type search);``
 
@@ -457,7 +457,7 @@
 
            joined_str is "h,e,l,l,o"
 
-    ### 4.4 . join templatize arrays
+    ### 5.4 . join templatize arrays
 
     ### ``py::join(std::array<type, size_t size>, type2 search);``
 
