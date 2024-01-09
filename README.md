@@ -19,7 +19,7 @@
 - ## 1 . range 
     - Create a sequence of numbers or get sequence of values from Iterable data types eg:- arrays, template arrays, vectors and strings
 
-    ### 1 . get sequence of numbers
+    ### 1.1 . get sequence of numbers
 
     ### ``py::range<type>(long long start, long long end, long long step); ``
 
@@ -45,7 +45,7 @@
 
     
 
-    ### 2 . get sequence std::string of std::string 
+    ### 1.2 . get sequence std::string of std::string 
 
     ### ``py::range(std::string source, long long start ,long long end ,long long step); ``
 
@@ -64,7 +64,7 @@
             string_sequence is "97531" 
 
 
-    ### 3 . get sequence of std::vector of std::vector 
+    ### 1.3 . get sequence of std::vector of std::vector 
 
     ### ``py::range(std::vector<type> source,long long start ,long long end ,long long step); ``
 
@@ -88,7 +88,7 @@
 
             numbers_sequence is {9, 7, 5, 3, 1}
     
-    ### 4 . get sequence of array of array 
+    ### 1.4 . get sequence of array of array 
 
     ### ``py::range<type,size>(*array, long long start ,long long end ,long long step); ``
 
@@ -133,11 +133,11 @@
             characters_sequence is {'o', 'l', 'l', 'e'}
 
 
-- ## 1 . replace 
+- ## 2 . replace 
     -  replaces a specified value with another value in Iterable data types eg:- arrays, template arrays, vectors and strings.
 
 
-    ### 1 . replace strings
+    ### 2.1 . replace strings
 
     ### ``py::range(std::string source, type1 search ,type1 replace);``
 
@@ -149,14 +149,14 @@
     - `std::string str = "my name is Name, Name is 10 years old.";`
         - `std::string replaced_str = py::replace(str, "Name", "john Watson");`
 
-            replaced_str is "my name is john Watson, john Watson is 10 years old.";
+            replaced_str is "my name is john Watson, john Watson is 10 years old."
         - `std::string replaced_str = py::replace(str, '1', "5");`
 
-            replaced_str is "my name is Name, Name is 50 years old.";
+            replaced_str is "my name is Name, Name is 50 years old."
 
         
 
-    ### 2 . replace vectors
+    ### 2.2 . replace vectors
     ### ``py::range(std::vector<type>, type search, type replace);``
 
     - types 
@@ -178,7 +178,7 @@
 
 
 
-    ### 3 . replace arrays
+    ### 2.3 . replace arrays
 
     ### ``py::range<type,size>(*array, type search, type replace);``
 
@@ -201,9 +201,9 @@
     - `char characters[6] = {'h', 'e', 'l', 'l', 'o', '\0'};`
         - `char *replaced_characters = py::range<char, 5>(characters, 'l', 'L');`  
 
-            characters_sequence is {'h', 'e', 'L', 'L', 'o', '\0';}
+            characters_sequence is {'h', 'e', 'L', 'L', 'o', '\0'}
 
-    ### 4 . replace templatize arrays
+    ### 2.4 . replace templatize arrays
 
     ### ``py::range<type, size>(std::array<type, size_t size>, type search, type replace);``
     ### ``py::range(std::array<type, size_t size>, type search, type replace);``
@@ -223,8 +223,271 @@
     - `std::array<int, 5> numbers= {0, 0, 0, 1, 2};`
         - `std::array<int, 5> replaced_numbers = py::replace<int, 5>(numbers, 0, 100);`    
 
-            replaced_numbers is {100, 100, 100, 1, 2};
+            replaced_numbers is {100, 100, 100, 1, 2}
     - `std::array<char, 5> characters= {'h', 'e', 'l', 'l', 'o'};`
         - `char *replaced_characters = py::range<char, 5>(characters, 'l', 'L');`     
+
+            replaced_characters is {'h', 'e', 'L', 'L', 'o', '\0'}
+- ## 3 . split 
+    - Split a std::string into a std::vector< std::string> where each word is a list item
+
+    
+
+    ### ``py::split(std::string source, type splitter); ``
+
+    - types 
+    
+    ```
+    char, std::string
+    ```
+    - `std::string str = "1,2,3,4,5";`
+        - `std::vector<std::string> splitted_str = py::split(str, ",");`
+
+            splitted_str is {"1", "2", "3", "4", "5"}
+        - `std::vector<std::string> splitted_str = py::split(str, ',');`
+
+            splitted_str is {"1", "2", "3", "4", "5"}
+    
+    - `std::string str = "1>>432>>3>>4213>>5";`
+        - `std::vector<std::string> splitted_str = py::split(str, ">>");`
+
+            splitted_str is {"1", "432", "3", "4213", "5"}
+        - `std::vector<std::string> splitted_str = py::split(str, '>');`
+
+            splitted_str is {"1", "", "432", "", "3", "", "4213", "", "5"}
+    - `std::string str = "c:/users/user/appdata";`
+        - `std::vector<std::string> splitted_str = py::split(str, "/");`
         
-            replaced_characters is {'h', 'e', 'L', 'L', 'o', '\0';}
+            splitted_str is {"c:", "users", "user", "appdata"}
+
+- ## 4 . count 
+    - The count method returns the number of elements with the specified value in Iterable. eg:- arrays, template arrays, vectors and strings
+
+    ### 4.1 . count on strings
+
+    ### ``py::count<type2>(std::string source, type search);``
+
+    - types 
+    
+    ```
+    std::string ,char
+    ```
+
+    - types 2
+    
+    ```
+    int ,long int, long long int, unsigned long, unsigned long long, double, float 
+    ```
+    - `std::string str = "11234123";`
+        - `int count = py::count<int>(str, "1");`
+
+            count is 3
+        - `long long int count = py::count<long long int>(str, "2");`
+
+            count is 2
+        - `int count = py::count<int>(str, "123");`
+
+            count is 2
+
+
+        
+
+    ### 4.2 . count on  vectors
+    ### ``py::count<type2>(std::vector<type>, type search);``
+
+    - types 
+    
+    ```
+    any type
+    ```
+
+    - types 2
+    
+    ```
+    int ,long int, long long int, unsigned long, unsigned long long, double, float 
+    ```
+    - `std::vector<int> numbers = {1, 1, 2, 2, 3, 4, 5, 5, 6};`
+        - `int count = py::count<int>(numbers, 1);`
+
+            count is 2
+        - `int count = py::count<int>(numbers, 6);`
+
+           count is 1
+    - `std::vector<std::string> strs = {"abc", "def", "ghi", "abc", "abc"};`
+        - `int count = py::count<int>(strs, "abc");`  
+
+            count is 3
+    
+
+
+
+    ### 4.3 . count on arrays
+
+    ### ``py::ccount<type,size,type2>(*array, type search);``
+
+    - types 
+    
+    ```
+    any type
+    ```
+
+    - size 
+    
+    ```
+    array size
+    ```
+    - types 2
+    
+    ```
+    int ,long int, long long int, unsigned long, unsigned long long, double, float 
+    ```
+
+    - `int numbers[10] = {0, 0, 0, 1, 2, 3, 3, 4, 4};`
+        - `int count = py::count<int, 10, int>(numbers, 0);`    
+
+           count is 3
+    - `char characters[6] = {'h', 'e', 'l', 'l', 'o', '\0'};`
+        -  `int count = py::count<char, 5, int>(characters, 'l');`    
+
+            count is 2
+
+    ### 4.4 . count on templatize arrays
+
+    ### ``py::count<type, size, type2>(std::array<type, size_t size>, type search);``
+
+    - types 
+    
+    ```
+    any type
+    ```
+
+    - size 
+    
+    ```
+    templatize array size
+    ```
+    - types 2
+    
+    ```
+    int ,long int, long long int, unsigned long, unsigned long long, double, float 
+    ```
+
+    - `std::array<int, 5> numbers= {0, 0, 0, 1, 2};`
+        - `int count = py::count<int, 5, int>(numbers, 0);`    
+
+            count is 3
+    - `std::array<char, 5> characters= {'h', 'e', 'l', 'l', 'o'};`
+        - `int count = py::count<char, 5, int>(characters, 'l');`     
+
+            count is 2
+
+
+- ## 4 . join 
+    - The count method returns the number of elements with the specified value in Iterable. eg:- arrays, template arrays, vectors and strings
+
+    ### 4.1 . join strings
+
+    ### ``py::join(std::string source, type join_by);``
+
+    - types 
+    
+    ```
+    std::string ,char
+    ```
+
+    - `std::string str = "2468";`
+        - `std::string joined_str = py::join(str, ",");`
+
+            joined_str is "2,4,6,8"
+        - `std::string joined_str = py::join(str, "--");`
+
+            joined_str is "2--4--6--8"
+        - `std::string joined_str = py::join(str, '|');`
+
+            joined_str is "2|4|6|8"
+
+
+        
+
+    ### 4.2 . join vectors
+    ### ``py::join(std::vector<type> source, type join_by);``
+
+    - types 
+    
+    ```
+    std::string, char
+    ```
+
+    - `std::vector<std::string> strs = {"abc","def","ghi","jkl"};`
+        - `std::string joined_str = py::join(strs, "+");`
+
+            joined_str is "abc+def+ghi+jkl"
+        - `std::string joined_str = py::join(strs, "_____");`
+
+            joined_str is "abc_____def_____ghi_____jkl"
+        - `std::string joined_str = py::join(strs, '|');`
+
+            joined_str is "abc|def|ghi|jkl"
+    
+
+
+
+    ### 4.3 . count on arrays
+
+    ### ``py::ccount<type,size,type2>(*array, type search);``
+
+    - types 
+    
+    ```
+    any type
+    ```
+
+    - size 
+    
+    ```
+    array size
+    ```
+    - types 2
+    
+    ```
+    int ,long int, long long int, unsigned long, unsigned long long, double, float 
+    ```
+
+    - `int numbers[10] = {0, 0, 0, 1, 2, 3, 3, 4, 4};`
+        - `int count = py::count<int, 10, int>(numbers, 0);`    
+
+           count is 3
+    - `char characters[6] = {'h', 'e', 'l', 'l', 'o', '\0'};`
+        -  `int count = py::count<char, 5, int>(characters, 'l');`    
+
+            count is 2
+
+    ### 4.4 . count on templatize arrays
+
+    ### ``py::count<type, size, type2>(std::array<type, size_t size>, type search);``
+
+    - types 
+    
+    ```
+    any type
+    ```
+
+    - size 
+    
+    ```
+    templatize array size
+    ```
+    - types 2
+    
+    ```
+    int ,long int, long long int, unsigned long, unsigned long long, double, float 
+    ```
+
+    - `std::array<int, 5> numbers= {0, 0, 0, 1, 2};`
+        - `int count = py::count<int, 5, int>(numbers, 0);`    
+
+            count is 3
+    - `std::array<char, 5> characters= {'h', 'e', 'l', 'l', 'o'};`
+        - `int count = py::count<char, 5, int>(characters, 'l');`     
+
+            count is 2
