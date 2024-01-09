@@ -323,7 +323,7 @@
 
     ### 4.3 . count on arrays
 
-    ### ``py::ccount<type,size,type2>(*array, type search);``
+    ### ``py::count<type,size,type2>(*array, type search);``
 
     - types 
     
@@ -432,14 +432,14 @@
 
 
 
-    ### 4.3 . count on arrays
+    ### 4.3 . join arrays
 
-    ### ``py::ccount<type,size,type2>(*array, type search);``
+    ### ``py::join<type, size>(*array, type search);``
 
     - types 
     
     ```
-    any type
+    std::string, char
     ```
 
     - size 
@@ -447,47 +447,36 @@
     ```
     array size
     ```
-    - types 2
-    
-    ```
-    int ,long int, long long int, unsigned long, unsigned long long, double, float 
-    ```
 
-    - `int numbers[10] = {0, 0, 0, 1, 2, 3, 3, 4, 4};`
-        - `int count = py::count<int, 10, int>(numbers, 0);`    
+    - `std::string strs[] = {"abc","def","ghi","jkl"};`
+        - `std::string joined_str  = py::join<std::string, 4>(strs, "||||");`    
 
-           count is 3
+           joined_str is "abc||||def||||ghi||||jkl"
     - `char characters[6] = {'h', 'e', 'l', 'l', 'o', '\0'};`
-        -  `int count = py::count<char, 5, int>(characters, 'l');`    
+        -  `std::string joined_str = py::join<char, 5>(characters, ',');`    
 
-            count is 2
+           joined_str is "h,e,l,l,o"
 
-    ### 4.4 . count on templatize arrays
+    ### 4.4 . join templatize arrays
 
-    ### ``py::count<type, size, type2>(std::array<type, size_t size>, type search);``
+    ### ``py::join(std::array<type, size_t size>, type2 search);``
 
     - types 
     
     ```
-    any type
-    ```
-
-    - size 
-    
-    ```
-    templatize array size
+    std::string, char
     ```
     - types 2
     
     ```
-    int ,long int, long long int, unsigned long, unsigned long long, double, float 
+    std::string, char 
     ```
 
-    - `std::array<int, 5> numbers= {0, 0, 0, 1, 2};`
-        - `int count = py::count<int, 5, int>(numbers, 0);`    
+    - `std::array<char, 5> characters= {'0', '0', '0', '1', '2'};`
+        - `std::string joined_str = py::join(characters, '=');`    
 
-            count is 3
-    - `std::array<char, 5> characters= {'h', 'e', 'l', 'l', 'o'};`
-        - `int count = py::count<char, 5, int>(characters, 'l');`     
+            joined_str is "0=0=0=1=2"
+    - `std::array<std::string, 4> strs= {"a","b","c","d"};`
+        - `std::string joined_str = py::join(strs, ">");`    
 
-            count is 2
+            joined_str is "a>b>c>d"
