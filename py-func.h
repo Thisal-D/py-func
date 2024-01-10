@@ -14,11 +14,11 @@ namespace py {
     template<typename T>
     std::vector<T> range(std::vector<T> source, long long start_index, long long end_index, long long step);
 
-    template<typename T, size_t size>
-    T* range(T* source, long long start_index, long long end_index, long long step);
+    template<typename T>
+    T* range(T* source, size_t size, long long start_index, long long end_index, long long step);
 
-    template<typename T, size_t size>
-    T* range(const T* source, long long start_index, long long end_index, long long step);
+    template<typename T>
+    T* range(const T* source, size_t size, long long start_index, long long end_index, long long step);
 
     /*
     template<typename T, size_t size ,size_t size_2>
@@ -35,11 +35,11 @@ namespace py {
     template <typename T>
     std::vector<T> replace(std::vector<T> source, T search, T replacement); 
 
-    template <typename T, size_t size>
-    T* replace(T* source, T search, T replacement);
+    template <typename T>
+    T* replace(T* source, size_t size, T search, T replacement);
 
-    template <typename T, size_t size>
-    T* replace(const T* source, T search, T replacement);
+    template <typename T>
+    T* replace(const T* source, size_t size, T search, T replacement);
 
     template <typename T, size_t size>
     std::array<T, size> replace(std::array<T, size> source, T search, T replacement);
@@ -62,15 +62,14 @@ namespace py {
     template <typename T, typename T2>
     T2 count(std::vector<T> source, T search) ;
 
-    template <typename T, size_t size, typename T2>
-    T2 count(T* source, T search);
+    template <typename T, typename T2>
+    T2 count(T* source, size_t size ,T search);
 
-    template <typename T, size_t size, typename T2>
-    T2 count(const T* source, T search);
+    template <typename T, typename T2>
+    T2 count(const T* source, size_t size, T search);
 
     template <typename T, size_t size, typename T2>
     T2 count(std::array<T, size> source, T search);
-
 
 
     //join
@@ -90,17 +89,17 @@ namespace py {
     template<typename T, size_t size>
     std::string join(std::array<T,size> source, char join_by);
 
-    template<typename T, size_t size>
-    std::string join(T* source, std::string join_by);
+    template<typename T>
+    std::string join(T* source, size_t size, std::string join_by);
 
-    template<typename T, size_t size>
-    std::string join(T* source, char join_by);
+    template<typename T>
+    std::string join(T* source, size_t size, char join_by);
 
-    template<typename T, size_t size>
-    std::string join(const T* source, std::string join_by);
+    template<typename T>
+    std::string join(const T* source, size_t size, std::string join_by);
 
-    template<typename T, size_t size>
-    std::string join(const T* source, char join_by);
+    template<typename T>
+    std::string join(const T* source, size_t size, char join_by);
 
 };
 
@@ -143,8 +142,8 @@ std::string py::range(std::string source, long long start_index, long long end_i
     return str_range;
 }
 
-template<typename T, size_t size>
-T* py::range(T* source, long long start_index, long long end_index, long long step) {
+template<typename T>
+T* py::range(T* source, size_t size, long long start_index, long long end_index, long long step) {
     __fix_index_range<long long>(start_index, end_index, size);
     std::vector<long long> index_range = range<long long>(start_index, end_index, step);
     T* T_array;
@@ -161,8 +160,8 @@ T* py::range(T* source, long long start_index, long long end_index, long long st
     return T_array;
 }
 
-template<typename T, size_t size>
-T* py::range(const T* source, long long start_index, long long end_index, long long step) {
+template<typename T>
+T* py::range(const T* source, size_t size, long long start_index, long long end_index, long long step) {
     __fix_index_range<long long>(start_index, end_index, size);
     std::vector<long long> index_range = range<long long>(start_index, end_index, step);
     T* T_array;
@@ -233,8 +232,8 @@ std::vector<T> py::replace(std::vector<T> source, T search, T replacement) {
     return source;
 }
 
-template <typename T, size_t size>
-T* py::replace(T* source, T search, T replacement) {
+template <typename T>
+T* py::replace(T* source, size_t size, T search, T replacement) {
     T* replaced_array;
     if (typeid(T) == typeid(char)) {
         replaced_array = new T[size + 1];
@@ -256,8 +255,8 @@ T* py::replace(T* source, T search, T replacement) {
     return replaced_array;
 }
 
-template <typename T, size_t size>
-T* py::replace(const T* source, T search, T replacement) {
+template <typename T>
+T* py::replace(const T* source, size_t size, T search, T replacement) {
     T* replaced_array;
     if (typeid(T) == typeid(char)) {
         replaced_array = new T[size + 1];
@@ -349,8 +348,8 @@ T2 py::count(std::vector<T> source, T search) {
     return count;
 }
 
-template <typename T, size_t size, typename T2>
-T2 py::count(T* source, T search) {
+template <typename T, typename T2>
+T2 py::count(T* source, size_t size, T search) {
     T2 count = 0;
     for (size_t index = 0; index < size; index++) {
         if (*source++ == search) {
@@ -360,8 +359,8 @@ T2 py::count(T* source, T search) {
     return count;
 }
 
-template <typename T, size_t size, typename T2>
-T2 py::count(const T* source, T search) {
+template <typename T, typename T2>
+T2 py::count(const T* source, size_t size, T search) {
     T2 count = 0;
     for (size_t index = 0; index < size; index++) {
         if (*source++ == search) {
@@ -442,8 +441,8 @@ std::string py::join(std::array<T,size> source, char join_by){
     return py::join(source, join_by_);
 }
 
-template<typename T, size_t size>
-std::string py::join(T* source, std::string join_by){
+template<typename T>
+std::string py::join(T* source, size_t size, std::string join_by){
     std::string joined_str = "";
     for (int index=0; index<size-1; index++){
         joined_str += *source++;
@@ -453,14 +452,14 @@ std::string py::join(T* source, std::string join_by){
     return joined_str;
 }
 
-template<typename T, size_t size>
-std::string py::join(T* source, char join_by){
+template<typename T>
+std::string py::join(T* source, size_t size, char join_by){
     std::string join_by_ = (std::string)""+join_by;
-    return py::join<T, size>(source, join_by_);
+    return py::join(source, join_by_);
 }
 
-template<typename T, size_t size>
-std::string py::join(const T* source, std::string join_by){
+template<typename T>
+std::string py::join(const T* source, size_t size, std::string join_by){
     std::string joined_str = "";
     for (int index=0; index<size-1; index++){
         joined_str += *source++;
@@ -470,8 +469,8 @@ std::string py::join(const T* source, std::string join_by){
     return joined_str;
 }
 
-template<typename T, size_t size>
-std::string py::join(const T* source, char join_by){
+template<typename T>
+std::string py::join(const T* source, size_t size, char join_by){
     std::string join_by_ = (std::string)""+join_by;
-    return py::join<T, size>(source, join_by_);
+    return py::join(source, size, join_by_);
 }
