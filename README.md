@@ -21,7 +21,7 @@
 
     ### 1.1 . get sequence of numbers
 
-    ### ``py::range<type>(long long start, long long end, long long step); ``
+    ### ``py::range<type>(type start, type end, type step); ``
 
     - types 
     
@@ -74,7 +74,7 @@
     any type
     ```
 
-    - `std::vector<int> numbers = {0, 1, 2, 3, 5, 6, 7, 8, 9};`
+    - `std::vector<int> numbers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};`
         - `std::vector<int> numbers_sequence = py::range(numbers, 0, 5, 1);`  
 
             numbers_sequence is {0, 1, 2, 3, 4}
@@ -90,7 +90,7 @@
     
     ### 1.4 . get sequence of array of array 
 
-    ### ``py::range(*array, size_t size, long long start ,long long end ,long long step); ``
+    ### ``py::range(type *array, size_t size, long long start ,long long end ,long long step); ``
 
     - types 
     
@@ -104,7 +104,7 @@
     array size
     ```
 
-    - `int numbers[10] = {0, 1, 2, 3, 5, 6, 7, 8, 9};`
+    - `int numbers[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};`
         - `int *numbers_sequence = py::range(numbers, 10, 0, 5, 1);`       
 
             numbers_sequence is {0, 1, 2, 3, 4}
@@ -139,12 +139,17 @@
 
     ### 2.1 . replace strings
 
-    ### ``py::range(std::string source, type1 search ,type1 replace);``
+    ### ``py::replace(std::string source, type1 search ,type2 replace);``
 
-    - types 
+    - types 1
     
     ```
     std::string ,char
+    ```
+    - types 2
+    
+    ```
+    char, std::string
     ```
     - `std::string str = "my name is Name, Name is 10 years old.";`
         - `std::string replaced_str = py::replace(str, "Name", "john Watson");`
@@ -157,7 +162,7 @@
         
 
     ### 2.2 . replace vectors
-    ### ``py::range(std::vector<type>, type search, type replace);``
+    ### ``py::replace<type>(std::vector<type>, type search, type replace);``
 
     - types 
     
@@ -172,7 +177,9 @@
 
             replaced_numbers is {1, 1, 2, 2, 3, 4, 1, 1, 6}
     - `std::vector<std::string> strs = {"abc", "def", "ghi"};`
-        - `std::vector<std::string> replaced_strs = py::replace(strs, "abc", "abcdef");`  
+        - `std::vector<std::string> replaced_strs = py::replace(strs, "abc", "abcdef");`
+        - `std::vector<std::string> replaced_strs = py::replace<std::string>(strs, "abc","abcdef");`  
+        -`std::vector<std::string> replaced_strs = py::replace(strs, (std::string)"abc", (std::string)"abcdef");`
 
             replaced_strs is {"abcdef", "def", "ghi"}
 
@@ -180,7 +187,7 @@
 
     ### 2.3 . replace arrays
 
-    ### ``py::replace(*array, size_t size, type search, type replace);``
+    ### ``py::replace(type *array, size_t size, type search, type replace);``
 
     - types 
     
@@ -194,10 +201,10 @@
     array size
     ```
 
-    - `int numbers[10] = {0, 0, 0, 1, 2, 3, 3, 4, 4};`
+    - `int numbers[10] = {0, 0, 0, 1, 2, 3, 3, 4, 4, 5};`
         - `int *replaced_numbers = py::replace(numbers,10, 0, 100);`     
 
-            replaced_numbers is {100, 100, 100, 1, 2, 3, 3, 4, 4}
+            replaced_numbers is {100, 100, 100, 1, 2, 3, 3, 4, 4, 5}
     - `char characters[6] = {'h', 'e', 'l', 'l', 'o', '\0'};`
         - `char *replaced_characters = py::replace(characters, 5, 'l', 'L');`  
 
@@ -224,7 +231,7 @@
 
             replaced_numbers is {100, 100, 100, 1, 2}
     - `std::array<char, 5> characters= {'h', 'e', 'l', 'l', 'o'};`
-        - `char *replaced_characters = py::replace(characters, 'l', 'L');`     
+        - `std::array<char,5> replaced_characters = py::replace(characters, 'l', 'L');`     
 
             replaced_characters is {'h', 'e', 'L', 'L', 'o', '\0'}
 - ## 3 . split 
@@ -239,6 +246,8 @@
     ```
     char, std::string
     ```
+
+    
     - `std::string str = "1,2,3,4,5";`
         - `std::vector<std::string> splitted_str = py::split(str, ",");`
 
@@ -292,7 +301,7 @@
         
 
     ### 4.2 . count on  vectors
-    ### ``py::count<type2>(std::vector<type>, type search);``
+    ### ``py::count<type, type2>(std::vector<type>, type search);``
 
     - types 
     
@@ -306,14 +315,14 @@
     int ,long int, long long int, unsigned long, unsigned long long, double, float 
     ```
     - `std::vector<int> numbers = {1, 1, 2, 2, 3, 4, 5, 5, 6};`
-        - `int count = py::count<int>(numbers, 1);`
+        - `int count = py::count<int, int>(numbers, 1);`
 
             count is 2
-        - `int count = py::count<int>(numbers, 6);`
+        - `int count = py::count<int, int>(numbers, 6);`
 
            count is 1
     - `std::vector<std::string> strs = {"abc", "def", "ghi", "abc", "abc"};`
-        - `int count = py::count<int>(strs, "abc");`  
+        - `long long int count = py::count<std::string, long long int>(strs, "abc");`  
 
             count is 3
     
@@ -322,7 +331,7 @@
 
     ### 4.3 . count on arrays
 
-    ### ``py::count<type, type2>(*array, size_t size, type search);``
+    ### ``py::count<type, type2>(type *array, size_t size, type search);``
 
     - types 
     
@@ -341,7 +350,7 @@
     int ,long int, long long int, unsigned long, unsigned long long, double, float 
     ```
 
-    - `int numbers[10] = {0, 0, 0, 1, 2, 3, 3, 4, 4};`
+    - `int numbers[10] = {0, 0, 0, 1, 2, 3, 3, 4, 4 ,1};`
         - `int count = py::count<int, int>(numbers, 10, 0);` 
         - `unsigned long long count = py::count<int, unsigned long long>(numbers, 10, 0);`       
 
@@ -435,9 +444,15 @@
 
     ### 5.3 . join arrays
 
-    ### ``py::join(*array, size_t size, type search);``
+    ### ``py::join(type *array, size_t size, type2 join_by);``
 
     - types 
+    
+    ```
+    std::string, char
+    ```
+
+    - types 2
     
     ```
     std::string, char
@@ -464,7 +479,7 @@
 
     ### 5.4 . join templatize arrays
 
-    ### ``py::join(std::array<type, size_t size>, type2 search);``
+    ### ``py::join(std::array<type, size_t size>, type2 join_by);``
 
     - types 
     
