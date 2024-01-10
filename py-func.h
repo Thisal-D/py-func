@@ -455,7 +455,7 @@ std::string py::join(T* source, size_t size, std::string join_by){
 template<typename T>
 std::string py::join(T* source, size_t size, char join_by){
     std::string join_by_ = (std::string)""+join_by;
-    return py::join(source, join_by_);
+    return py::join(source, size, join_by_);
 }
 
 template<typename T>
