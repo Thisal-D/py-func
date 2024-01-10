@@ -90,7 +90,7 @@
     
     ### 1.4 . get sequence of array of array 
 
-    ### ``py::range<type,size>(*array, long long start ,long long end ,long long step); ``
+    ### ``py::range(*array, size_t size, long long start ,long long end ,long long step); ``
 
     - types 
     
@@ -105,30 +105,30 @@
     ```
 
     - `int numbers[10] = {0, 1, 2, 3, 5, 6, 7, 8, 9};`
-        - `int *numbers_sequence = py::range<int, 10>(numbers, 0, 5, 1);`       
+        - `int *numbers_sequence = py::range(numbers, 10, 0, 5, 1);`       
 
             numbers_sequence is {0, 1, 2, 3, 4}
-        - `int *numbers_sequence = py::range<int, 10>(numbers, 0, 10, 2);`
+        - `int *numbers_sequence = py::range(numbers, 10, 0, 10, 2);`
 
             numbers_sequence is {0, 2, 4, 6, 8}
-        - `int *numbers_sequence = py::range<int, 10>(numbers, -1, -5, -1);`
+        - `int *numbers_sequence = py::range(numbers, 10, -1, -5, -1);`
 
             numbers_sequence is {9, 8, 7, 6}
-        - `int *numbers_sequence = py::range<int, 10>(numbers, -1, -10, -2);`
+        - `int *numbers_sequence = py::range(numbers, 10, -1, -10, -2);`
 
             numbers_sequence is {9, 7, 5, 3, 1}
     - `char characters[6] = {'h', 'e', 'l', 'l', 'o', '\0'};`
-        - `char *characters_sequence = py::range<char, 5>(characters, 0, 3, 1);`
+        - `char *characters_sequence = py::range(characters, 5, 0, 3, 1);`
 
             characters_sequence is {'h', 'e', 'l'}
-        - `char *characters_sequence = py::range<char, 5>(characters, -1, -5, -1);`
+        - `char *characters_sequence = py::range(characters, 5, -1, -5, -1);`
 
             characters_sequence is {'o', 'l', 'l', 'e'}
     - `const char * characters = "hello" ;`
-        - `char *characters_sequence = py::range<char, 5>(characters, 0, 3, 1);`
+        - `char *characters_sequence = py::range(characters, 5, 0, 3, 1);`
 
             characters_sequence is {'h', 'e', 'l'}
-        - `char *characters_sequence = py::range<char, 5>(characters, -1, -5, -1);`
+        - `char *characters_sequence = py::range(characters, 5, -1, -5, -1);`
 
             characters_sequence is {'o', 'l', 'l', 'e'}
 
@@ -165,14 +165,14 @@
     any type
     ```
     - `std::vector<int> numbers = {1, 1, 2, 2, 3, 4, 5, 5, 6};`
-        - `std::vector<int> replaced_numbers = py::range(numbers, 1, 100);`
+        - `std::vector<int> replaced_numbers = py::replace(numbers, 1, 100);`
 
             replaced_numbers is {100, 100, 2, 2, 3, 4, 5, 5, 6}
-         - `std::vector<int> replaced_numbers = py::range(numbers, 5, 1);`
+         - `std::vector<int> replaced_numbers = py::replace(numbers, 5, 1);`
 
             replaced_numbers is {1, 1, 2, 2, 3, 4, 1, 1, 6}
     - `std::vector<std::string> strs = {"abc", "def", "ghi"};`
-        - `std::vector<std::string> replaced_strs = py::range(strs, "abc", "abcdef");`  
+        - `std::vector<std::string> replaced_strs = py::replace(strs, "abc", "abcdef");`  
 
             replaced_strs is {"abcdef", "def", "ghi"}
 
@@ -180,7 +180,7 @@
 
     ### 2.3 . replace arrays
 
-    ### ``py::range<type,size>(*array, type search, type replace);``
+    ### ``py::replace(*array, size_t size, type search, type replace);``
 
     - types 
     
@@ -195,18 +195,17 @@
     ```
 
     - `int numbers[10] = {0, 0, 0, 1, 2, 3, 3, 4, 4};`
-        - `int *replaced_numbers = py::replace<int, 10>(numbers, 0, 100);`     
+        - `int *replaced_numbers = py::replace(numbers,10, 0, 100);`     
 
             replaced_numbers is {100, 100, 100, 1, 2, 3, 3, 4, 4}
     - `char characters[6] = {'h', 'e', 'l', 'l', 'o', '\0'};`
-        - `char *replaced_characters = py::range<char, 5>(characters, 'l', 'L');`  
+        - `char *replaced_characters = py::replace(characters, 5, 'l', 'L');`  
 
-            characters_sequence is {'h', 'e', 'L', 'L', 'o', '\0'}
+            replaced_characters is {'h', 'e', 'L', 'L', 'o', '\0'}
 
     ### 2.4 . replace templatize arrays
 
-    ### ``py::range<type, size>(std::array<type, size_t size>, type search, type replace);``
-    ### ``py::range(std::array<type, size_t size>, type search, type replace);``
+    ### ``py::replace(std::array<type, size_t size>, type search, type replace);``
 
     - types 
     
@@ -221,11 +220,11 @@
     ```
 
     - `std::array<int, 5> numbers= {0, 0, 0, 1, 2};`
-        - `std::array<int, 5> replaced_numbers = py::replace<int, 5>(numbers, 0, 100);`    
+        - `std::array<int, 5> replaced_numbers = py::replace(numbers, 0, 100);`    
 
             replaced_numbers is {100, 100, 100, 1, 2}
     - `std::array<char, 5> characters= {'h', 'e', 'l', 'l', 'o'};`
-        - `char *replaced_characters = py::range<char, 5>(characters, 'l', 'L');`     
+        - `char *replaced_characters = py::replace(characters, 'l', 'L');`     
 
             replaced_characters is {'h', 'e', 'L', 'L', 'o', '\0'}
 - ## 3 . split 
@@ -323,7 +322,7 @@
 
     ### 4.3 . count on arrays
 
-    ### ``py::count<type,size,type2>(*array, type search);``
+    ### ``py::count<type, type2>(*array, size_t size, type search);``
 
     - types 
     
@@ -343,11 +342,12 @@
     ```
 
     - `int numbers[10] = {0, 0, 0, 1, 2, 3, 3, 4, 4};`
-        - `int count = py::count<int, 10, int>(numbers, 0);`    
+        - `int count = py::count<int, int>(numbers, 10, 0);` 
+        - `unsigned long long count = py::count<int, unsigned long long>(numbers, 10, 0);`       
 
            count is 3
     - `char characters[6] = {'h', 'e', 'l', 'l', 'o', '\0'};`
-        -  `int count = py::count<char, 5, int>(characters, 'l');`    
+        -  `int count = py::count<char, int>(characters, 5, 'l');`    
 
             count is 2
 
@@ -373,7 +373,8 @@
     ```
 
     - `std::array<int, 5> numbers= {0, 0, 0, 1, 2};`
-        - `int count = py::count<int, 5, int>(numbers, 0);`    
+        - `int count = py::count<int, 5, int>(numbers, 0);`
+        - `long int count = py::count<int, 5, long int>(numbers, 0);`    
 
             count is 3
     - `std::array<char, 5> characters= {'h', 'e', 'l', 'l', 'o'};`
@@ -434,7 +435,7 @@
 
     ### 5.3 . join arrays
 
-    ### ``py::join<type, size>(*array, type search);``
+    ### ``py::join(*array, size_t size, type search);``
 
     - types 
     
@@ -449,13 +450,17 @@
     ```
 
     - `std::string strs[] = {"abc","def","ghi","jkl"};`
-        - `std::string joined_str  = py::join<std::string, 4>(strs, "||||");`    
+        - `std::string joined_str  = py::join(strs, 4, "||||");`    
 
-           joined_str is "abc||||def||||ghi||||jkl"
+            joined_str is "abc||||def||||ghi||||jkl"
+
+        - `std::string joined_str  = py::join(strs, 4, "-");` 
+
+            joined_str is "abc-def-ghi-jkl" 
     - `char characters[6] = {'h', 'e', 'l', 'l', 'o', '\0'};`
-        -  `std::string joined_str = py::join<char, 5>(characters, ',');`    
+        -  `std::string joined_str = py::join(characters, 5, ',');`    
 
-           joined_str is "h,e,l,l,o"
+            joined_str is "h,e,l,l,o"
 
     ### 5.4 . join templatize arrays
 
