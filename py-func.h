@@ -1,4 +1,7 @@
-#pragma once
+#ifndef PY_FUNC_H
+#define PY_FUNC_H
+
+
 #include <iostream>
 #include <array>
 #include <vector>
@@ -44,13 +47,10 @@ namespace py {
     template <typename T, size_t size>
     std::array<T, size> replace(std::array<T, size> source, T search, T replacement);
 
-
     //split
     std::vector<std::string> split(std::string source, std::string splitter);
 
     std::vector<std::string> split(std::string source, char splitter);
-
-
 
     //count
     template <typename T2>
@@ -70,7 +70,6 @@ namespace py {
 
     template <typename T, size_t size, typename T2>
     T2 count(std::array<T, size> source, T search);
-
 
     //join
     std::string join(std::string source, std::string join_by);
@@ -203,8 +202,6 @@ std::vector<T> py::range(std::vector<T> source, long long start_index, long long
     return T_vector;
 }
 
-
-
 //replace
 template <typename T, typename T2>
 std::string py::replace(std::string source, T search, T2 replacement) {
@@ -220,7 +217,6 @@ std::string py::replace(std::string source, T search, T2 replacement) {
     replaced_string += source;
     return  replaced_string;
 }
-
 
 template <typename T>
 std::vector<T> py::replace(std::vector<T> source, T search, T replacement) {
@@ -288,11 +284,6 @@ std::array<T, size> py::replace(std::array<T, size> source, T search, T replacem
     return source;
 }
 
-
-
-
-
-
 //same as pythom string split method
 //split
 std::vector<std::string> py::split(std::string source, std::string splitter) {
@@ -314,9 +305,6 @@ std::vector<std::string> py::split(std::string source, char splitter){
     std::string splitter_ = (std::string)"" + splitter;
     return py::split(source, splitter_);
 }
-
-
-
 
 //count 
 template <typename T2>
@@ -380,8 +368,6 @@ T2 py::count(std::array<T, size> source, T search) {
     }
     return count;
 }
-
-
 
 //join
 std::string py::join(std::string source, std::string join_by){
@@ -474,3 +460,6 @@ std::string py::join(const T* source, size_t size, char join_by){
     std::string join_by_ = (std::string)""+join_by;
     return py::join(source, size, join_by_);
 }
+
+
+#endif
