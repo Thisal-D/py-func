@@ -1,25 +1,51 @@
-# py-func
-<hr>
-<br>
+# py-func Library
 
-#### you need to include header file before use ,include could be like 
+#
 
-> #include "py-func.h"
+## Introduction
+The `py-func` library provides C++ implementations of common string manipulation functions, range manipulation functions, similar to those found in Python. These functions are designed to be easy to use and integrate into your C++ projects.
 
-## Mainly there are 5 functions. 
-### All functions are wrapped by namespace "py"
->  - range 
->  - replace 
->  - split
->  - count 
->  - join
+## Usage
+To use the `py-func` library, include the header file `py-func.h` in your C++ source files:
+
+```
+#include "py-func"
+```
+
+
+# Available Functions
+
+- **range** : 
+    - <a href="#generate-seq-nums">Generate a sequence of integers</a>
+    - <a href="#slice-str">Slice std::strings</a>
+    - <a href="#slice-vector">Slice std::vector</a>
+    - <a href="#slice-array">Slice std::array</a>
+
+- **replace** 
+    - <a href="#replace-str">Replace std::string</a>
+    - <a href="#replace-vector">Replace std::vector</a>
+    - <a href="#replace-array">Replace array</a>
+    - <a href="#replace-t-array">Replace std::array</a>
+- <a href="#split-str">**split** </a>
+- **count** :
+    - <a href="#count-str">Count in std::string</a>
+    - <a href="#count-vector">Count in std::vector</a>
+    - <a href="#count-array">Count in array</a>
+    - <a href="#count-t-array">Count in std::array</a>
+- **join** :
+    - <a href="#join-str">Join std::string</a>
+    - <a href="#join-vector">Join std::vector</a>
+    - <a href="#join-array">Join array</a>
+    - <a href="#join-t-array">Join std::array</a>
 
 <br>
 
 - ## 1 . range 
     - Create a sequence of numbers or get sequence of values from Iterable data types eg:- arrays, template arrays, vectors and strings
 
-    ### 1.1 . get sequence of numbers
+    <div id="generate-seq-nums">
+
+    ### 1.1 . Generate sequence of numbers
 
     ### ``py::range<type>(type start, type end, type step); ``
 
@@ -42,10 +68,11 @@
 
             num_sequence is {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9}
 
-
+    </div>
     
+    <div id="slice-str">
 
-    ### 1.2 . get sequence std::string of std::string 
+    ### 1.2 . Slice std::string
 
     ### ``py::range(std::string source, long long start ,long long end ,long long step); ``
 
@@ -63,6 +90,9 @@
 
             string_sequence is "97531" 
 
+    </div>
+
+    <div id="slice-vector">
 
     ### 1.3 . get sequence of std::vector of std::vector 
 
@@ -87,7 +117,11 @@
         - `std::vector<int> numbers_sequence = py::range(numbers, -1, -10, -2);`
 
             numbers_sequence is {9, 7, 5, 3, 1}
-    
+
+    </div>
+
+    <div id="slice-array">
+
     ### 1.4 . get sequence of array of array 
 
     ### ``py::range(type *array, size_t size, long long start ,long long end ,long long step); ``
@@ -132,10 +166,12 @@
 
             characters_sequence is {'o', 'l', 'l', 'e'}
 
+    </div>
 
 - ## 2 . replace 
     -  replaces a specified value with another value in Iterable data types eg:- arrays, template arrays, vectors and strings.
 
+    <div id="replace-str">
 
     ### 2.1 . replace strings
 
@@ -159,7 +195,8 @@
 
             replaced_str is "my name is Name, Name is 50 years old."
 
-        
+    </div>
+    <div id="replace-vector">
 
     ### 2.2 . replace vectors
     ### ``py::replace<type>(std::vector<type>, type search, type replace);``
@@ -183,7 +220,8 @@
 
             replaced_strs is {"abcdef", "def", "ghi"}
 
-
+    </div>
+    <div id="replace-array">
 
     ### 2.3 . replace arrays
 
@@ -207,8 +245,10 @@
             replaced_numbers is {100, 100, 100, 1, 2, 3, 3, 4, 4, 5}
     - `char characters[6] = {'h', 'e', 'l', 'l', 'o', '\0'};`
         - `char *replaced_characters = py::replace(characters, 5, 'l', 'L');`  
-
             replaced_characters is {'h', 'e', 'L', 'L', 'o', '\0'}
+
+    </div>
+    <div id="replace-t-array">
 
     ### 2.4 . replace templatize arrays
 
@@ -234,6 +274,10 @@
         - `std::array<char,5> replaced_characters = py::replace(characters, 'l', 'L');`     
 
             replaced_characters is {'h', 'e', 'L', 'L', 'o', '\0'}
+
+    </div>
+    <div id="split-str">
+
 - ## 3 . split 
     - Split a std::string into a std::vector< std::string> where each word is a list item
 
@@ -268,10 +312,14 @@
         
             splitted_str is {"c:", "users", "user", "appdata"}
 
+    </a>
+
 - ## 4 . count 
     - The count method returns the number of elements with the specified value in Iterable. eg:- arrays, template arrays, vectors and strings
 
-    ### 4.1 . count on strings
+    <div id="count-str">
+
+    ### 4.1 . count in strings
 
     ### ``py::count<type2>(std::string source, type search);``
 
@@ -297,10 +345,10 @@
 
             count is 2
 
+    </div>
+    <div id="count-vector">
 
-        
-
-    ### 4.2 . count on  vectors
+    ### 4.2 . count in vectors
     ### ``py::count<type, type2>(std::vector<type>, type search);``
 
     - types 
@@ -325,11 +373,12 @@
         - `long long int count = py::count<std::string, long long int>(strs, "abc");`  
 
             count is 3
-    
+
+    </div>
+    <div id="count-array">
 
 
-
-    ### 4.3 . count on arrays
+    ### 4.3 . count in arrays
 
     ### ``py::count<type, type2>(type *array, size_t size, type search);``
 
@@ -360,7 +409,10 @@
 
             count is 2
 
-    ### 4.4 . count on templatize arrays
+    </div>
+    <div id="count-t-array">
+
+    ### 4.4 . count in templatize arrays
 
     ### ``py::count<type, size, type2>(std::array<type, size_t size>, type search);``
 
@@ -391,9 +443,12 @@
 
             count is 2
 
+    </div>
 
 - ## 5 . join 
     - The count method returns the number of elements with the specified value in Iterable. eg:- arrays, template arrays, vectors and strings
+
+    <div id="join-str">
 
     ### 5.1 . join strings
 
@@ -416,8 +471,8 @@
 
             joined_str is "2|4|6|8"
 
-
-        
+    </div>
+    <div id="join-vector">
 
     ### 5.2 . join vectors
     ### ``py::join(std::vector<type> source, type join_by);``
@@ -438,9 +493,9 @@
         - `std::string joined_str = py::join(strs, '|');`
 
             joined_str is "abc|def|ghi|jkl"
-    
 
-
+    </div>
+    <div id="join-array">
 
     ### 5.3 . join arrays
 
@@ -477,6 +532,9 @@
 
             joined_str is "h,e,l,l,o"
 
+    </div>
+    <div id="join-t-array">
+
     ### 5.4 . join templatize arrays
 
     ### ``py::join(std::array<type, size_t size>, type2 join_by);``
@@ -500,3 +558,5 @@
         - `std::string joined_str = py::join(strs, ">");`    
 
             joined_str is "a>b>c>d"
+            
+    </div>
