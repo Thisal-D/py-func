@@ -1,19 +1,22 @@
-# py-func Library
+# py-func Header
 
-#
+<hr>
 
 ## Introduction
-The `py-func` library provides C++ implementations of common string manipulation functions, range manipulation functions, similar to those found in Python. These functions are designed to be easy to use and integrate into your C++ projects.
+The py-func library offers a comprehensive collection of C++ implementations for common string, vector, and array manipulation tasks. With functions like Slice, Count, Replace, and Join, py-func aims to simplify these operations and seamlessly integrate them into your C++ projects. Whether you're working with strings, vectors, or arrays, py-func provides efficient and user-friendly solutions for your programming needs.
 
-## Usage
+<hr>
+
+### Usage
 To use the `py-func` library, include the header file `py-func.h` in your C++ source files:
 
 ```
-#include "py-func"
+#include "py-func.h"
 ```
 
+<hr>
 
-# Available Functions
+## Overview (Functions)
 
 - **range** : 
     - <a href="#generate-seq-nums">Generate a sequence of integers</a>
@@ -38,525 +41,529 @@ To use the `py-func` library, include the header file `py-func.h` in your C++ so
     - <a href="#join-array">Join array</a>
     - <a href="#join-t-array">Join std::array</a>
 
-<br>
+<hr>
 
-- ## 1 . range 
+- ### 1. range 
     - Create a sequence of numbers or get sequence of values from Iterable data types eg:- arrays, template arrays, vectors and strings
 
     <div id="generate-seq-nums">
 
-    ### 1.1 . Generate sequence of numbers
+    #### 1.1. Generate sequence of numbers
 
-    ### ``py::range<type>(type start, type end, type step); ``
+    ### ``py::range<type>(type start, type end, type step)``
 
-    - types 
-    
-    ```
-    int, long int, long long int, unsigned int, unsigned long int, float, double, long double
-    ```
-    - ` `
-        - `std::vector<int> num_sequence = py::range<int>(0, 10, 1);`
+    - types
 
-            num_sequence is {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
-        - `std::vector<unsigned int> num_sequence = py::range<unsigned int>(0, 10, 2);`
+        int, long int, long long int, unsigned int, unsigned long int, float, double, long double
 
-            num_sequence is {0, 2, 4, 6, 8}
-        - `std::vector<long int> num_sequence = py::range<long int>(-1, -5, -1);`
+    <br>
+  
+    **py::range<int>(0, 10, 1)** -> {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 
-            num_sequence is {-1, -2, -3, -4, -5}
-        - `std::vector<float> num_sequence = py::range<float>(0, 1, 0.1);`
+    **py::range<unsigned int>(0, 10, 2)** -> {0, 2, 4, 6, 8}
 
-            num_sequence is {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9}
+    **py::range<long int>(-1, -5, -1)** -> {1, -2, -3, -4, -5}
+
+    **py::range<float>(0, 1, 0.1)** -> {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9}
 
     </div>
+
+    <hr>
     
     <div id="slice-str">
 
-    ### 1.2 . Slice std::string
+    #### 1.2. Slice std::string
 
-    ### ``py::range(std::string source, long long start ,long long end ,long long step); ``
+    ### ``py::range(std::string source, long long start, long long end, long long step)``
 
-    - `std::string string = "0123456789";`
-        - `std::string string_sequence = py::range(string, 0, 5, 1);`    
+    - std::string string = "0123456789"
 
-            string_sequence is "01234"
-        - `std::string string_sequence = py::range(string, 0, 10, 2);`
-
-            string_sequence is "02468"
-        - `std::string string_sequence = py::range(string, -1, -5, -1);`
-
-            string_sequence is "9876" 
-        - `std::string string_sequence = py::range(string, -1, -10, -2);`
-
-            string_sequence is "97531" 
+        **py::range(string, 0, 5, 1)** -> "01234"
+      
+        **py::range(string, 0, 10, 2)** -> "02468"
+      
+        **py::range(string, -1, -5, -1)** -> "9876"
+        
+        **py::range(string, -1, -10, -2)** -> "97531"
 
     </div>
+
+    <hr>
 
     <div id="slice-vector">
 
-    ### 1.3 . get sequence of std::vector of std::vector 
+    #### 1.3. Slice std::vector of std::vector 
 
-    ### ``py::range(std::vector<type> source,long long start ,long long end ,long long step); ``
+    ### ``py::range(std::vector<type> source,long long start, long long end, long long step)``
 
     - types 
+
+        any type
     
-    ```
-    any type
-    ```
+    <br>
 
-    - `std::vector<int> numbers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};`
-        - `std::vector<int> numbers_sequence = py::range(numbers, 0, 5, 1);`  
+    - std::vector<int> numbers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 
-            numbers_sequence is {0, 1, 2, 3, 4}
-        - `std::vector<int> numbers_sequence = py::range(numbers, 0, 10, 2);`
+        **py::range(numbers, 0, 5, 1)** -> {0, 1, 2, 3, 4}
 
-            numbers_sequence is {0, 2, 4, 6, 8}
-        - `std::vector<int> numbers_sequence = py::range(numbers, -1, -5, -1);`
+        **py::range(numbers, 0, 10, 2)** -> {0, 2, 4, 6, 8}    
 
-            numbers_sequence is {9, 8, 7, 6}
-        - `std::vector<int> numbers_sequence = py::range(numbers, -1, -10, -2);`
+        **py::range(numbers, -1, -5, -1)** -> {9, 8, 7, 6}
 
-            numbers_sequence is {9, 7, 5, 3, 1}
+        **py::range(numbers, -1, -10, -2)** -> {9, 7, 5, 3, 1}
 
     </div>
+
+    <hr>
 
     <div id="slice-array">
 
-    ### 1.4 . get sequence of array of array 
+    #### 1.4. get sequence of array of array 
 
-    ### ``py::range(type *array, size_t size, long long start ,long long end ,long long step); ``
+    ### ``py::range(type *array, size_t size, long long start, long long end, long long step)``
 
     - types 
+
+        any type
     
-    ```
-    any type
-    ```
-
-    - size 
+    - size
     
-    ```
-    array size
-    ```
+        array 
+        
+    <br>
 
-    - `int numbers[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};`
-        - `int *numbers_sequence = py::range(numbers, 10, 0, 5, 1);`       
+    - int numbers[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 
-            numbers_sequence is {0, 1, 2, 3, 4}
-        - `int *numbers_sequence = py::range(numbers, 10, 0, 10, 2);`
+        **py::range(numbers, 10, 0, 5, 1)** -> {0, 1, 2, 3, 4}
 
-            numbers_sequence is {0, 2, 4, 6, 8}
-        - `int *numbers_sequence = py::range(numbers, 10, -1, -5, -1);`
+        **py::range(numbers, 10, 0, 10, 2)** -> {0, 2, 4, 6, 8}
 
-            numbers_sequence is {9, 8, 7, 6}
-        - `int *numbers_sequence = py::range(numbers, 10, -1, -10, -2);`
+        **py::range(numbers, 10, -1, -5, -1)** -> {9, 8, 7, 6}
 
-            numbers_sequence is {9, 7, 5, 3, 1}
-    - `char characters[6] = {'h', 'e', 'l', 'l', 'o', '\0'};`
-        - `char *characters_sequence = py::range(characters, 5, 0, 3, 1);`
+        **py::range(numbers, 10, -1, -10, -2)** -> {9, 7, 5, 3, 1}
 
-            characters_sequence is {'h', 'e', 'l'}
-        - `char *characters_sequence = py::range(characters, 5, -1, -5, -1);`
+        <hr>
 
-            characters_sequence is {'o', 'l', 'l', 'e'}
-    - `const char * characters = "hello" ;`
-        - `char *characters_sequence = py::range(characters, 5, 0, 3, 1);`
+    - char characters[6] = {'h', 'e', 'l', 'l', 'o', '\0'}
+    
+        **py::range(characters, 5, 0, 3, 1)** -> {'h', 'e', 'l'}
 
-            characters_sequence is {'h', 'e', 'l'}
-        - `char *characters_sequence = py::range(characters, 5, -1, -5, -1);`
+        **py::range(characters, 5, -1, -5, -1)** -> {'o', 'l', 'l', 'e'}
 
-            characters_sequence is {'o', 'l', 'l', 'e'}
+        <hr>
 
+    - const char * characters = "hello"
+
+        **py::range(characters, 5, 0, 3, 1)** -> {'h', 'e', 'l'}
+
+        **py::range(characters, 5, -1, -5, -1)** -> {'o', 'l', 'l', 'e'}
+    
     </div>
 
-- ## 2 . replace 
+<hr>
+
+- ### 2. replace 
+
     -  replaces a specified value with another value in Iterable data types eg:- arrays, template arrays, vectors and strings.
 
     <div id="replace-str">
 
-    ### 2.1 . replace strings
+    #### 2.1. replace strings
 
-    ### ``py::replace(std::string source, type1 search ,type2 replace);``
+    ### ``py::replace(std::string source, type1 search, type2 replace)``
 
     - types 1
+
+        std::string, char
     
-    ```
-    std::string ,char
-    ```
     - types 2
-    
-    ```
-    char, std::string
-    ```
-    - `std::string str = "my name is Name, Name is 10 years old.";`
-        - `std::string replaced_str = py::replace(str, "Name", "john Watson");`
 
-            replaced_str is "my name is john Watson, john Watson is 10 years old."
-        - `std::string replaced_str = py::replace(str, '1', "5");`
+        char, std::string
 
-            replaced_str is "my name is Name, Name is 50 years old."
+    <br>
+
+    - std::string str = "my name is Name, Name is 10 years old."
+
+        **py::replace(str, "Name", "john Watson")** -> "john Watson is 10 years old.john Watson is 50 years old."
+
+        **py::replace(str, '1', "5")** -> "my name is Name, Name is 50 years old."
 
     </div>
+
+    <hr>
+
     <div id="replace-vector">
 
-    ### 2.2 . replace vectors
-    ### ``py::replace<type>(std::vector<type>, type search, type replace);``
+    #### 2.2. replace vectors
+    
+    ### ``py::replace<type>(std::vector<type>, type search, type replace)``
 
     - types 
+
+        any type
     
-    ```
-    any type
-    ```
-    - `std::vector<int> numbers = {1, 1, 2, 2, 3, 4, 5, 5, 6};`
-        - `std::vector<int> replaced_numbers = py::replace(numbers, 1, 100);`
+    <br>
 
-            replaced_numbers is {100, 100, 2, 2, 3, 4, 5, 5, 6}
-         - `std::vector<int> replaced_numbers = py::replace(numbers, 5, 1);`
+    - std::vector<int> numbers = {1, 1, 2, 2, 3, 4, 5, 5, 6}
 
-            replaced_numbers is {1, 1, 2, 2, 3, 4, 1, 1, 6}
-    - `std::vector<std::string> strs = {"abc", "def", "ghi"};`
-        - `std::vector<std::string> replaced_strs = py::replace(strs, "abc", "abcdef");`
-        - `std::vector<std::string> replaced_strs = py::replace<std::string>(strs, "abc","abcdef");`  
-        -`std::vector<std::string> replaced_strs = py::replace(strs, (std::string)"abc", (std::string)"abcdef");`
+        **py::replace(numbers, 1, 100)** -> {100, 100, 2, 2, 3, 4, 5, 5, 6}
 
-            replaced_strs is {"abcdef", "def", "ghi"}
+        **py::replace(numbers, 5, 1)** -> {1, 1, 2, 2, 3, 4, 1, 1, 6}
+    
+        <hr>
+
+    - std::vector<std::string> strs = {"abc", "def", "ghi"}
+
+        **py::replace(strs, "abc", "replaced")** -> {"replaced", "def", "ghi"}
+
+        **py::replace<std::string>(strs, "def", "replaced")** ->  {"abc", "def", "replaced"}
 
     </div>
+
+    <hr>
+
     <div id="replace-array">
 
-    ### 2.3 . replace arrays
+    #### 2.3. replace arrays
 
-    ### ``py::replace(type *array, size_t size, type search, type replace);``
+    ### ``py::replace(type *array, size_t size, type search, type replace)``
 
     - types 
-    
-    ```
-    any type
-    ```
+
+        any type
 
     - size 
-    
-    ```
-    array size
-    ```
 
-    - `int numbers[10] = {0, 0, 0, 1, 2, 3, 3, 4, 4, 5};`
-        - `int *replaced_numbers = py::replace(numbers,10, 0, 100);`     
+        array size
+   
+    <br>
 
-            replaced_numbers is {100, 100, 100, 1, 2, 3, 3, 4, 4, 5}
-    - `char characters[6] = {'h', 'e', 'l', 'l', 'o', '\0'};`
-        - `char *replaced_characters = py::replace(characters, 5, 'l', 'L');`  
-            replaced_characters is {'h', 'e', 'L', 'L', 'o', '\0'}
+    - int numbers[10] = {0, 0, 0, 1, 2, 3, 3, 4, 4, 5}
+
+        **py::replace(numbers,10, 0, 100)** -> {100, 100, 100, 1, 2, 3, 3, 4, 4, 5}
+
+        <hr>
+
+    - char characters[6] = {'h', 'e', 'l', 'l', 'o', '\0'}
+
+        **py::replace(characters, 5, 'l', 'L')** -> {'h', 'e', 'L', 'L', 'o', '\0'}
 
     </div>
+
+    <hr>
+
     <div id="replace-t-array">
 
-    ### 2.4 . replace templatize arrays
+    #### 2.4. replace templatize arrays
 
-    ### ``py::replace(std::array<type, size_t size>, type search, type replace);``
+    ### ``py::replace(std::array<type, size_t size>, type search, type replace)``
 
     - types 
-    
-    ```
-    any type
-    ```
+
+        any type
 
     - size 
+
+        templatize array size
     
-    ```
-    templatize array size
-    ```
+    <br>
 
-    - `std::array<int, 5> numbers= {0, 0, 0, 1, 2};`
-        - `std::array<int, 5> replaced_numbers = py::replace(numbers, 0, 100);`    
+    - std::array<int, 5> numbers= {0, 0, 0, 1, 2}
 
-            replaced_numbers is {100, 100, 100, 1, 2}
-    - `std::array<char, 5> characters= {'h', 'e', 'l', 'l', 'o'};`
-        - `std::array<char,5> replaced_characters = py::replace(characters, 'l', 'L');`     
+        **py::replace(numbers, 0, 100)** -> {100, 100, 100, 1, 2}
 
-            replaced_characters is {'h', 'e', 'L', 'L', 'o', '\0'}
+        <hr>
+
+    - std::array<char, 5> characters= {'h', 'e', 'l', 'l', 'o'}
+
+        **py::replace(characters, 'l', 'L')** -> {'h', 'e', 'L', 'L', 'o', '\0'}
 
     </div>
+
+    <hr>
+
     <div id="split-str">
 
-- ## 3 . split 
+- ### 3. split 
+
     - Split a std::string into a std::vector< std::string> where each word is a list item
 
-    
-
-    ### ``py::split(std::string source, type splitter); ``
+    ### ``py::split(std::string source, type splitter)``
 
     - types 
+
+        char, std::string
+
+    <br>
     
-    ```
-    char, std::string
-    ```
+    - std::string str = "1,2,3,4,5";`
 
-    
-    - `std::string str = "1,2,3,4,5";`
-        - `std::vector<std::string> splitted_str = py::split(str, ",");`
+        **py::split(str, ",")** -> {"1", "2", "3", "4", "5"}
 
-            splitted_str is {"1", "2", "3", "4", "5"}
-        - `std::vector<std::string> splitted_str = py::split(str, ',');`
+        <hr>
 
-            splitted_str is {"1", "2", "3", "4", "5"}
-    
-    - `std::string str = "1>>432>>3>>4213>>5";`
-        - `std::vector<std::string> splitted_str = py::split(str, ">>");`
+    - std::string str = "1>>432>>3>>4213>>5"
 
-            splitted_str is {"1", "432", "3", "4213", "5"}
-        - `std::vector<std::string> splitted_str = py::split(str, '>');`
+        **py::split(str, ">>")** -> {"1", "432", "3", "4213", "5"}
 
-            splitted_str is {"1", "", "432", "", "3", "", "4213", "", "5"}
-    - `std::string str = "c:/users/user/appdata";`
-        - `std::vector<std::string> splitted_str = py::split(str, "/");`
+        **py::split(str, '>')** -> {"1", "", "432", "", "3", "", "4213", "", "5"}
         
-            splitted_str is {"c:", "users", "user", "appdata"}
+        <hr>
+    
+    - std::string str = "c:/users/user/appdata";`
 
-    </a>
+        **py::split(str, "/")** -> {"c:", "users", "user", "appdata"}
 
-- ## 4 . count 
+    </div>
+
+<hr>
+
+- ### 4. count 
+
     - The count method returns the number of elements with the specified value in Iterable. eg:- arrays, template arrays, vectors and strings
 
     <div id="count-str">
 
-    ### 4.1 . count in strings
+    #### 4.1. count in strings
 
-    ### ``py::count<type2>(std::string source, type search);``
+    ### ``py::count<type2>(std::string source, type search)``
 
     - types 
     
-    ```
-    std::string ,char
-    ```
+        std::string, char
 
     - types 2
+
+        int, long int, long long int, unsigned long, unsigned long long, double, float 
     
-    ```
-    int ,long int, long long int, unsigned long, unsigned long long, double, float 
-    ```
-    - `std::string str = "11234123";`
-        - `int count = py::count<int>(str, "1");`
+    <br>
 
-            count is 3
-        - `long long int count = py::count<long long int>(str, "2");`
+    - std::string str = "11234123"
 
-            count is 2
-        - `int count = py::count<int>(str, "123");`
+        **py::count<int>(str, "1")** -> 3
 
-            count is 2
+        **py::count<long long int>(str, "2")** -> 2
+
+        **py::count<int>(str, "123")** -> 2
 
     </div>
+
+    <hr>
+
     <div id="count-vector">
 
-    ### 4.2 . count in vectors
-    ### ``py::count<type, type2>(std::vector<type>, type search);``
+    #### 4.2. count in vectors
+
+    ### ``py::count<type, type2>(std::vector<type>, type search)``
 
     - types 
-    
-    ```
-    any type
-    ```
 
+        any type
+    
     - types 2
+
+        int, long int, long long int, unsigned long, unsigned long long, double, float 
     
-    ```
-    int ,long int, long long int, unsigned long, unsigned long long, double, float 
-    ```
-    - `std::vector<int> numbers = {1, 1, 2, 2, 3, 4, 5, 5, 6};`
-        - `int count = py::count<int, int>(numbers, 1);`
+    <br>
 
-            count is 2
-        - `int count = py::count<int, int>(numbers, 6);`
+    - std::vector<int> numbers = {1, 1, 2, 2, 3, 4, 5, 5, 6}
 
-           count is 1
-    - `std::vector<std::string> strs = {"abc", "def", "ghi", "abc", "abc"};`
-        - `long long int count = py::count<std::string, long long int>(strs, "abc");`  
+        **py::count<int, int>(numbers, 1)** -> 2
 
-            count is 3
+        **py::count<int, int>(numbers, 6)** -> 1
+        
+        <hr>
+        
+    - std::vector<std::string> strs = {"abc", "def", "ghi", "abc", "abc"}
+
+        **py::count<std::string, long long int>(strs, "abc")** -> 3
 
     </div>
+
+    <hr>
+
     <div id="count-array">
 
+    #### 4.3. count in arrays
 
-    ### 4.3 . count in arrays
-
-    ### ``py::count<type, type2>(type *array, size_t size, type search);``
+    ### ``py::count<type, type2>(type *array, size_t size, type search)``
 
     - types 
-    
-    ```
-    any type
-    ```
+
+        any type
 
     - size 
+
+        array size
     
-    ```
-    array size
-    ```
     - types 2
+
+        int, long int, long long int, unsigned long, unsigned long long, double, float 
     
-    ```
-    int ,long int, long long int, unsigned long, unsigned long long, double, float 
-    ```
+    <br>
 
-    - `int numbers[10] = {0, 0, 0, 1, 2, 3, 3, 4, 4 ,1};`
-        - `int count = py::count<int, int>(numbers, 10, 0);` 
-        - `unsigned long long count = py::count<int, unsigned long long>(numbers, 10, 0);`       
+    - int numbers[10] = {0, 0, 0, 1, 2, 3, 3, 4, 4, 1}
 
-           count is 3
-    - `char characters[6] = {'h', 'e', 'l', 'l', 'o', '\0'};`
-        -  `int count = py::count<char, int>(characters, 5, 'l');`    
+        **py::count<int, int>(numbers, 10, 0)** -> 3
 
-            count is 2
+        <hr>
+    
+    - char characters[6] = {'h', 'e', 'l', 'l', 'o', '\0'}
+
+        **py::count<char, int>(characters, 5, 'l')** -> 2
 
     </div>
+
+    <hr>
+
     <div id="count-t-array">
 
-    ### 4.4 . count in templatize arrays
+    #### 4.4 . count in templatize arrays
 
-    ### ``py::count<type, size, type2>(std::array<type, size_t size>, type search);``
+    ### ``py::count<type, size, type2>(std::array<type, size_t size>, type search)``
 
     - types 
-    
-    ```
-    any type
-    ```
 
-    - size 
-    
-    ```
-    templatize array size
-    ```
+        any type
+
+    - size
+
+        templatize array size
+
     - types 2
+
+        int, long int, long long int, unsigned long, unsigned long long, double, float 
     
-    ```
-    int ,long int, long long int, unsigned long, unsigned long long, double, float 
-    ```
+    <br>
 
-    - `std::array<int, 5> numbers= {0, 0, 0, 1, 2};`
-        - `int count = py::count<int, 5, int>(numbers, 0);`
-        - `long int count = py::count<int, 5, long int>(numbers, 0);`    
+    - std::array<int, 5> numbers= {0, 0, 0, 1, 2}
 
-            count is 3
-    - `std::array<char, 5> characters= {'h', 'e', 'l', 'l', 'o'};`
-        - `int count = py::count<char, 5, int>(characters, 'l');`     
+        **py::count<int, 5, int>(numbers, 0)** -> 3
 
-            count is 2
+        **py::count<int, 5, long int>(numbers, 0)** -> 3  
+
+        <hr>
+
+    - std::array<char, 5> characters= {'h', 'e', 'l', 'l', 'o'}
+
+        **py::count<char, 5, int>(characters, 'l')** -> 3
 
     </div>
 
-- ## 5 . join 
+<hr>
+
+- ### 5 . join 
+
     - The count method returns the number of elements with the specified value in Iterable. eg:- arrays, template arrays, vectors and strings
 
     <div id="join-str">
 
-    ### 5.1 . join strings
+    #### 5.1 . join strings
 
-    ### ``py::join(std::string source, type join_by);``
+    ### ``py::join(std::string source, type join_by)``
 
     - types 
+
+        std::string, char
     
-    ```
-    std::string ,char
-    ```
+    <br>
 
-    - `std::string str = "2468";`
-        - `std::string joined_str = py::join(str, ",");`
+    - std::string str = "2468";
 
-            joined_str is "2,4,6,8"
-        - `std::string joined_str = py::join(str, "--");`
+        **py::join(str, ",")** -> "2,4,6,8"
 
-            joined_str is "2--4--6--8"
-        - `std::string joined_str = py::join(str, '|');`
+        **py::join(str, "--")** -> "2--4--6--8"
 
-            joined_str is "2|4|6|8"
+        **py::join(str, '|')** -> "2|4|6|8"
 
     </div>
+
+    <hr>
+
     <div id="join-vector">
 
-    ### 5.2 . join vectors
-    ### ``py::join(std::vector<type> source, type join_by);``
+    #### 5.2 . join 
+    
+    ### ``py::join(std::vector<type> source, type join_by)``
 
     - types 
+
+        std::string, char
+
+    <br>
+
+    - std::vector<std::string> strs = {"abc","def","ghi","jkl"}
     
-    ```
-    std::string, char
-    ```
+        **py::join(strs, "+")** -> "abc+def+ghi+jkl"
 
-    - `std::vector<std::string> strs = {"abc","def","ghi","jkl"};`
-        - `std::string joined_str = py::join(strs, "+");`
+        **py::join(strs, "_____")** -> "abc_____def_____ghi_____jkl"
 
-            joined_str is "abc+def+ghi+jkl"
-        - `std::string joined_str = py::join(strs, "_____");`
-
-            joined_str is "abc_____def_____ghi_____jkl"
-        - `std::string joined_str = py::join(strs, '|');`
-
-            joined_str is "abc|def|ghi|jkl"
+        **py::join(strs, '|')** -> "abc|def|ghi|jkl"
 
     </div>
+
+    <hr>
+    
     <div id="join-array">
 
-    ### 5.3 . join arrays
+    #### 5.3 . join arrays
 
     ### ``py::join(type *array, size_t size, type2 join_by);``
 
     - types 
-    
-    ```
-    std::string, char
-    ```
 
-    - types 2
+        std::string, char
     
-    ```
-    std::string, char
-    ```
+    - types 2
+
+        std::string, char
 
     - size 
+
+        array size
     
-    ```
-    array size
-    ```
+    <br>
 
-    - `std::string strs[] = {"abc","def","ghi","jkl"};`
-        - `std::string joined_str  = py::join(strs, 4, "||||");`    
+    - std::string strs[] = {"abc","def","ghi","jkl"}
 
-            joined_str is "abc||||def||||ghi||||jkl"
+        **py::join(strs, 4, "||||")** -> "abc||||def||||ghi||||jkl"
 
-        - `std::string joined_str  = py::join(strs, 4, "-");` 
+        **spy::join(strs, 4, "-")** -> "abc-def-ghi-jkl" 
+    
+        <hr>
 
-            joined_str is "abc-def-ghi-jkl" 
-    - `char characters[6] = {'h', 'e', 'l', 'l', 'o', '\0'};`
-        -  `std::string joined_str = py::join(characters, 5, ',');`    
+    - char characters[6] = {'h', 'e', 'l', 'l', 'o', '\0'}
 
-            joined_str is "h,e,l,l,o"
+        -  **py::join(characters, 5, ',')** -> "h,e,l,l,o"
 
     </div>
+
     <div id="join-t-array">
 
-    ### 5.4 . join templatize arrays
+    <hr>
 
-    ### ``py::join(std::array<type, size_t size>, type2 join_by);``
+    #### 5.4 . join templatize arrays
+
+    ### ``py::join(std::array<type, size_t size>, type2 join_by)``
 
     - types 
+
+        std::string, char
     
-    ```
-    std::string, char
-    ```
     - types 2
+
+        std::string, char 
     
-    ```
-    std::string, char 
-    ```
+    <br>
 
-    - `std::array<char, 5> characters= {'0', '0', '0', '1', '2'};`
-        - `std::string joined_str = py::join(characters, '=');`    
+    - std::array<char, 5> characters= {'0', '0', '0', '1', '2'}
 
-            joined_str is "0=0=0=1=2"
-    - `std::array<std::string, 4> strs= {"a","b","c","d"};`
-        - `std::string joined_str = py::join(strs, ">");`    
+        **py::join(characters, '=')** -> "0=0=0=1=2"
+        
+        <hr>
 
-            joined_str is "a>b>c>d"
+    - std::array<std::string, 4> strs= {"a","b","c","d"}
+    
+        **py::join(strs, ">")** -> "a>b>c>d"
             
     </div>
