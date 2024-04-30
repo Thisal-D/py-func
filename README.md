@@ -701,7 +701,7 @@ To use the `py-func` library, include the header file `py-func.h` in your C++ so
 
     - usage 
         ``` c++
-        std::array<char, 5> characters= {'0', '0', '0', '1', '2'}
+        std::array<char, 5> characters = {'0', '0', '0', '1', '2'}
 
             py::join(characters, '=') -> "0=0=0=1=2"
         ```
@@ -709,7 +709,7 @@ To use the `py-func` library, include the header file `py-func.h` in your C++ so
         <hr>
 
         ``` c++
-        std::array<std::string, 4> strs= {"a","b","c","d"}
+        std::array<std::string, 4> strs = {"a","b","c","d"}
 
             py::join(strs, ">") -> "a>b>c>d"
         ```
