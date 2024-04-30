@@ -3,7 +3,7 @@
 <hr>
 
 ## Introduction
-The py-func library offers a comprehensive collection of C++ implementations for common string, vector, and array manipulation tasks. With functions like Slice, Count, Replace, and Join, py-func aims to simplify these operations and seamlessly integrate them into your C++ projects. Whether you're working with strings, vectors, or arrays, py-func provides efficient and user-friendly solutions for your programming needs.
+The py-func library header a comprehensive collection of C++ implementations for common string, vector, and array manipulation tasks. With functions like Slice, Count, Replace, and Join, py-func aims to simplify these operations and seamlessly integrate them into your C++ projects. Whether you're working with strings, vectors, or arrays, py-func provides efficient and user-friendly solutions for your programming needs.
 
 <hr>
 
