@@ -1,47 +1,61 @@
 # py-func.h
 
-<hr>
+---
 
 ## Introduction
-The py-func library header a comprehensive collection of C++ implementations for common string, vector, and array manipulation tasks. With functions like Slice, Count, Replace, and Join, py-func aims to simplify these operations and seamlessly integrate them into your C++ projects. Whether you're working with strings, vectors, or arrays, py-func provides efficient and user-friendly solutions for your programming needs.
+The py-func library header a comprehensive collection of C++ implementations for common string, vector, and array manipulation tasks.
 
-<hr>
+---
 
 ### Usage
-To use the `py-func` library, include the header file `py-func.h` in your C++ source files:
+To use whole `py-func` library, include the header file `py-func.h` in your C++ source files:
 
 ```
 #include "py-func.h"
 ```
+to use seperate function, use required header seperatly
+```
+#include "count.h"
+#include "join.h"
+#include "range.h"
+#include "replace.h"
+#include "slice.h"
+#include "split.h"
+```
 
-<hr>
+---
 
 ## Overview (Functions)
 
-- **range** : 
+- **slice** : 
     - <a href="#generate-seq-nums">Generate a sequence of integers</a>
-    - <a href="#slice-str">Slice std::strings</a>
-    - <a href="#slice-vector">Slice std::vector</a>
-    - <a href="#slice-array">Slice std::array</a>
+     
+- **slice** :
+  - <a href="#slice-str">Slice std::strings</a>
+  - <a href="#slice-vector">Slice std::vector</a>
+  - <a href="#slice-array">Slice std::array</a>
 
-- **replace** 
+- **replace** :
     - <a href="#replace-str">Replace std::string</a>
     - <a href="#replace-vector">Replace std::vector</a>
     - <a href="#replace-array">Replace array</a>
     - <a href="#replace-t-array">Replace std::array</a>
+     
 - <a href="#split-str">**split** </a>
+ 
 - **count** :
     - <a href="#count-str">Count in std::string</a>
     - <a href="#count-vector">Count in std::vector</a>
     - <a href="#count-array">Count in array</a>
     - <a href="#count-t-array">Count in std::array</a>
+     
 - **join** :
     - <a href="#join-str">Join std::string</a>
     - <a href="#join-vector">Join std::vector</a>
     - <a href="#join-array">Join array</a>
     - <a href="#join-t-array">Join std::array</a>
 
-<hr>
+---
 
 - ### 1. range 
     **The "range" functionality allows you to create a sequence of numbers or extract a sequence of values from iterable data types such as arrays, template arrays, vectors, and strings.**
@@ -52,7 +66,7 @@ To use the `py-func` library, include the header file `py-func.h` in your C++ so
         
     - Allows you to generate sequences of numbers(`vector`) in C++, similar to Python's `range()` function. You can create sequences with specified start, end, and step values.
 
-    ### ```py::range<type>(type start, type end, type step)```
+    ### ```pyfunc::range<type>(type start, type end, type step)```
 
     - type
         ``` c++
@@ -70,21 +84,35 @@ To use the `py-func` library, include the header file `py-func.h` in your C++ so
     
         ``` c++
         // Generate sequence of integers from 0 to 9 with a step of 1
-        py::range<int>(0, 10, 1) -> {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+        pyfunc::range<int>(0, 10, 1) -> {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 
         // Generate sequence of unsigned integers from 0 to 8 with a step of 2
-        py::range<unsigned int>(0, 10, 2) -> {0, 2, 4, 6, 8}
+        pyfunc::range<unsigned int>(0, 10, 2) -> {0, 2, 4, 6, 8}
 
         // Generate sequence of long integers from -1 to -5 with a step of -1
-        py::range<long int>(-1, -5, -1) -> {1, -2, -3, -4, -5}
+        pyfunc::range<long int>(-1, -5, -1) -> {1, -2, -3, -4, -5}
 
         // Generate sequence of floats from 0.1 to 0.9 with a step of 0.1
-        py::range<float>(0, 1, 0.1) -> {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9}
+        pyfunc::range<float>(0, 1, 0.1) -> {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9}
         ```
+
+    - example
+        ``` c++
+        for (int i: pyfunc::range(1, 10, 2)){
+            std::cout << i << std::endl;
+            /*
+            1
+            3
+            5
+            7
+            9
+            */
+        }
+        ``` 
 
     </div>
 
-    <hr>
+    ---
     
     <div id="slice-str">
 
@@ -92,7 +120,7 @@ To use the `py-func` library, include the header file `py-func.h` in your C++ so
 
     - It allows you to extract a subsequence from a given string based on specified start, end, and step values.
 
-    ### ``py::range(std::string source, long long start, long long end, long long step)``
+    ### ``pyfunc::slice(std::string source, long long start, long long end, long long step)``
     
     - return type
         ``` c++
@@ -105,19 +133,26 @@ To use the `py-func` library, include the header file `py-func.h` in your C++ so
         ``` c++  
         std::string string = "0123456789"
 
-            py::range(string, 0, 5, 1)** -> "01234"
+            pyfunc::slice(string, 0, 5, 1)** -> "01234"
 
-            py::range(string, 0, 10, 2)** -> "02468"
+            pyfunc::slice(string, 0, 10, 2)** -> "02468"
 
-            py::range(string, -1, -5, -1)** -> "9876"
+            pyfunc::slice(string, -1, -5, -1)** -> "9876"
 
-            py::range(string, -1, -10, -2)** -> "97531"
+            pyfunc::slice(string, -1, -10, -2)** -> "97531"
 
         ```
+
+    - example
+        ``` c++
+        std::string str = "1,2,3,4,5,6";
+
+        std::cout << pyfunc::slice(str, 0, str.length(), 2); // 123456
+        ``` 
     
     </div>
 
-    <hr>
+    ---
 
     <div id="slice-vector">
 
@@ -125,10 +160,10 @@ To use the `py-func` library, include the header file `py-func.h` in your C++ so
 
     - It allows you to extract a subsequence from a given vector based on specified start, end, and step values.
 
-    ### ``py::range(std::vector<type> source,long long start, long long end, long long step)``
+    ### ``pyfunc::slice(std::vector<type> source,long long start, long long end, long long step)``
 
     - type
-        ```c++
+        ``` c++
         any type
         ```
 
@@ -143,17 +178,17 @@ To use the `py-func` library, include the header file `py-func.h` in your C++ so
         ``` c++ 
         std::vector<int> numbers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
     
-            py::range(numbers, 0, 5, 1) -> {0, 1, 2, 3, 4}
+            pyfunc::slice(numbers, 0, 5, 1) -> {0, 1, 2, 3, 4}
 
-            py::range(numbers, 0, 10, 2) -> {0, 2, 4, 6, 8}    
+            pyfunc::slice(numbers, 0, 10, 2) -> {0, 2, 4, 6, 8}    
 
-            py::range(numbers, -1, -5, -1) -> {9, 8, 7, 6}
+            pyfunc::slice(numbers, -1, -5, -1) -> {9, 8, 7, 6}
 
-            py::range(numbers, -1, -10, -2) -> {9, 7, 5, 3, 1}
+            pyfunc::slice(numbers, -1, -10, -2) -> {9, 7, 5, 3, 1}
         ```
     </div>
 
-    <hr>
+    ---
 
     <div id="slice-array">
 
@@ -161,7 +196,7 @@ To use the `py-func` library, include the header file `py-func.h` in your C++ so
 
     - It allows you to extract a subsequence from a given array based on specified start, end, and step values.
 
-    ### ``py::range(type *array, size_t size, long long start, long long end, long long step)``
+    ### ``pyfunc::slice(type *array, size_t size, long long start, long long end, long long step)``
 
     - type
         ``` c++
@@ -179,37 +214,37 @@ To use the `py-func` library, include the header file `py-func.h` in your C++ so
         ``` c++
         int numbers[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 
-            py::range(numbers, 10, 0, 5, 1) -> {0, 1, 2, 3, 4}
+            pyfunc::slice(numbers, 10, 0, 5, 1) -> {0, 1, 2, 3, 4}
 
-            py::range(numbers, 10, 0, 10, 2) -> {0, 2, 4, 6, 8}
+            pyfunc::slice(numbers, 10, 0, 10, 2) -> {0, 2, 4, 6, 8}
 
-            py::range(numbers, 10, -1, -5, -1) -> {9, 8, 7, 6}
+            pyfunc::slice(numbers, 10, -1, -5, -1) -> {9, 8, 7, 6}
 
-            py::range(numbers, 10, -1, -10, -2) -> {9, 7, 5, 3, 1}
+            pyfunc::slice(numbers, 10, -1, -10, -2) -> {9, 7, 5, 3, 1}
         ```
 
-        <hr>
+        ---
 
         ``` c++
         char characters[6] = {'h', 'e', 'l', 'l', 'o', '\0'}
 
-            py::range(characters, 5, 0, 3, 1) -> {'h', 'e', 'l'}
+            pyfunc::slice(characters, 5, 0, 3, 1) -> {'h', 'e', 'l'}
 
-            py::range(characters, 5, -1, -5, -1) -> {'o', 'l', 'l', 'e'}
+            pyfunc::slice(characters, 5, -1, -5, -1) -> {'o', 'l', 'l', 'e'}
         ```
-        <hr>
+        ---
 
         ``` c++
         const char * characters = "hello"
 
-            py::range(characters, 5, 0, 3, 1) -> {'h', 'e', 'l'}
+            pyfunc::slice(characters, 5, 0, 3, 1) -> {'h', 'e', 'l'}
 
-            py::range(characters, 5, -1, -5, -1) -> {'o', 'l', 'l', 'e'}
+            pyfunc::slice(characters, 5, -1, -5, -1) -> {'o', 'l', 'l', 'e'}
         ```
 
     </div>
 
-<hr>
+---
 
 - ### 2. replace 
 
@@ -219,7 +254,7 @@ To use the `py-func` library, include the header file `py-func.h` in your C++ so
 
     #### 2.1. replace strings
 
-    ### ``py::replace(std::string source, type1 search, type2 replace)``
+    ### ``pyfunc::replace(std::string source, type1 search, type2 replace)``
 
     - type1
         ``` c++
@@ -242,20 +277,20 @@ To use the `py-func` library, include the header file `py-func.h` in your C++ so
         ``` c++
         std::string str = "my name is Name, Name is 10 years old."
  
-            py::replace(str, "Name", "john Watson") -> "john Watson is 10 years old.john Watson is 50 years old."
+            pyfunc::replace(str, "Name", "john Watson") -> "john Watson is 10 years old.john Watson is 50 years old."
 
-            py::replace(str, '1', "5") -> "my name is Name, Name is 50 years old."
+            pyfunc::replace(str, '1', "5") -> "my name is Name, Name is 50 years old."
         ```
 
     </div>
 
-    <hr>
+    ---
 
     <div id="replace-vector">
 
     #### 2.2. replace vectors
     
-    ### ``py::replace<type>(std::vector<type>, type search, type replace)``
+    ### ``pyfunc::replace<type>(std::vector<type>, type search, type replace)``
 
     - type
         ``` c++
@@ -274,30 +309,30 @@ To use the `py-func` library, include the header file `py-func.h` in your C++ so
         ``` c++
         std::vector<int> numbers = {1, 1, 2, 2, 3, 4, 5, 5, 6}
 
-            py::replace(numbers, 1, 100) -> {100, 100, 2, 2, 3, 4, 5, 5, 6}
+            pyfunc::replace(numbers, 1, 100) -> {100, 100, 2, 2, 3, 4, 5, 5, 6}
 
-            py::replace(numbers, 5, 1) -> {1, 1, 2, 2, 3, 4, 1, 1, 6}
+            pyfunc::replace(numbers, 5, 1) -> {1, 1, 2, 2, 3, 4, 1, 1, 6}
         ```
 
-        <hr>
+        ---
 
         ``` c++
         std::vector<std::string> strs = {"abc", "def", "ghi"}
 
-            py::replace(strs, "abc", "replaced") -> {"replaced", "def", "ghi"}
+            pyfunc::replace(strs, "abc", "replaced") -> {"replaced", "def", "ghi"}
 
-            py::replace<std::string>(strs, "def", "replaced") ->  {"abc", "def", "replaced"}
+            pyfunc::replace<std::string>(strs, "def", "replaced") ->  {"abc", "def", "replaced"}
         ```
 
     </div>
 
-    <hr>
+    ---
 
     <div id="replace-array">
 
     #### 2.3. replace arrays
 
-    ### ``py::replace(type *array, size_t size, type search, type replace)``
+    ### ``pyfunc::replace(type *array, size_t size, type search, type replace)``
 
     - type
         ``` c++
@@ -316,26 +351,26 @@ To use the `py-func` library, include the header file `py-func.h` in your C++ so
         ``` c++
         int numbers[10] = {0, 0, 0, 1, 2, 3, 3, 4, 4, 5}
      
-            py::replace(numbers,10, 0, 100)** -> {100, 100, 100, 1, 2, 3, 3, 4, 4, 5}
+            pyfunc::replace(numbers,10, 0, 100)** -> {100, 100, 100, 1, 2, 3, 3, 4, 4, 5}
         ```
 
-        <hr>
+        ---
 
         ``` c++
         char characters[6] = {'h', 'e', 'l', 'l', 'o', '\0'}
 
-            py::replace(characters, 5, 'l', 'L')** -> {'h', 'e', 'L', 'L', 'o', '\0'}
+            pyfunc::replace(characters, 5, 'l', 'L')** -> {'h', 'e', 'L', 'L', 'o', '\0'}
         ```
 
     </div>
 
-    <hr>
+    ---
 
     <div id="replace-t-array">
 
     #### 2.4. replace templatize arrays
 
-    ### ``py::replace(std::array<type, size_t size>, type search, type replace)``
+    ### ``pyfunc::replace(std::array<type, size_t size>, type search, type replace)``
 
     - type 
         ``` c++
@@ -354,20 +389,20 @@ To use the `py-func` library, include the header file `py-func.h` in your C++ so
         ``` c++
         std::array<int, 5> numbers= {0, 0, 0, 1, 2}
 
-            py::replace(numbers, 0, 100) -> {100, 100, 100, 1, 2}
+            pyfunc::replace(numbers, 0, 100) -> {100, 100, 100, 1, 2}
         ```
 
-        <hr>
+        ---
 
         ``` c++
         std::array<char, 5> characters= {'h', 'e', 'l', 'l', 'o'}
 
-            py::replace(characters, 'l', 'L') -> {'h', 'e', 'L', 'L', 'o', '\0'}
+            pyfunc::replace(characters, 'l', 'L') -> {'h', 'e', 'L', 'L', 'o', '\0'}
         ```
 
     </div>
 
-    <hr>
+    ---
 
     <div id="split-str">
 
@@ -375,7 +410,7 @@ To use the `py-func` library, include the header file `py-func.h` in your C++ so
 
     - Split a std::string into a std::vector< std::string> where each word is a list item
 
-    ### ``py::split(std::string source, type splitter)``
+    ### ``pyfunc::split(std::string source, type splitter)``
 
     - type
         ``` c++
@@ -394,30 +429,30 @@ To use the `py-func` library, include the header file `py-func.h` in your C++ so
         ``` c++
         std::string str = "1,2,3,4,5";`
 
-            py::split(str, ",")** -> {"1", "2", "3", "4", "5"}
+            pyfunc::split(str, ",")** -> {"1", "2", "3", "4", "5"}
         ```
 
-        <hr>
+        ---
 
         ``` c++
         std::string str = "1>>432>>3>>4213>>5"
 
-            py::split(str, ">>") -> {"1", "432", "3", "4213", "5"}
+            pyfunc::split(str, ">>") -> {"1", "432", "3", "4213", "5"}
 
-            py::split(str, '>') -> {"1", "", "432", "", "3", "", "4213", "", "5"}
+            pyfunc::split(str, '>') -> {"1", "", "432", "", "3", "", "4213", "", "5"}
         ```
 
-        <hr>
+        ---
 
         ``` c++
         std::string str = "c:/users/user/appdata";`
 
-            py::split(str, "/") -> {"c:", "users", "user", "appdata"}
+            pyfunc::split(str, "/") -> {"c:", "users", "user", "appdata"}
         ```
 
     </div>
 
-<hr>
+---
 
 - ### 4. count 
 
@@ -427,7 +462,7 @@ To use the `py-func` library, include the header file `py-func.h` in your C++ so
 
     #### 4.1. count in strings
 
-    ### ``py::count<type2>(std::string source, type search)``
+    ### ``pyfunc::count<type2>(std::string source, type search)``
 
     - type
         ``` c++
@@ -445,22 +480,22 @@ To use the `py-func` library, include the header file `py-func.h` in your C++ so
     ``` c++
         std::string str = "11234123"
 
-            py::count<int>(str, "1") -> 3
+            pyfunc::count<int>(str, "1") -> 3
 
-            py::count<long long int>(str, "2") -> 2
+            pyfunc::count<long long int>(str, "2") -> 2
 
-            py::count<int>(str, "123") -> 2
+            pyfunc::count<int>(str, "123") -> 2
     ```
 
     </div>
 
-    <hr>
+    ---
 
     <div id="count-vector">
 
     #### 4.2. count in vectors
 
-    ### ``py::count<type, type2>(std::vector<type>, type search)``
+    ### ``pyfunc::count<type, type2>(std::vector<type>, type search)``
 
     - type
         ``` c++
@@ -479,28 +514,28 @@ To use the `py-func` library, include the header file `py-func.h` in your C++ so
         ``` c++
         std::vector<int> numbers = {1, 1, 2, 2, 3, 4, 5, 5, 6}
 
-            py::count<int, int>(numbers, 1)** -> 2
+            pyfunc::count<int, int>(numbers, 1)** -> 2
 
-            py::count<int, int>(numbers, 6)** -> 1
+            pyfunc::count<int, int>(numbers, 6)** -> 1
         ```
 
-        <hr>
+        ---
         
         ``` c++
         std::vector<std::string> strs = {"abc", "def", "ghi", "abc", "abc"}
 
-            py::count<std::string, long long int>(strs, "abc") -> 3
+            pyfunc::count<std::string, long long int>(strs, "abc") -> 3
         ```
 
     </div>
 
-    <hr>
+    ---
 
     <div id="count-array">
 
     #### 4.3. count in arrays
 
-    ### ``py::count<type, type2>(type *array, size_t size, type search)``
+    ### ``pyfunc::count<type, type2>(type *array, size_t size, type search)``
 
     - type
         ``` c++
@@ -524,26 +559,26 @@ To use the `py-func` library, include the header file `py-func.h` in your C++ so
         ``` c++
         int numbers[10] = {0, 0, 0, 1, 2, 3, 3, 4, 4, 1}
 
-            py::count<int, int>(numbers, 10, 0) -> 3
+            pyfunc::count<int, int>(numbers, 10, 0) -> 3
         ```
 
-        <hr>
+        ---
 
         ``` c++
         char characters[6] = {'h', 'e', 'l', 'l', 'o', '\0'}
 
-            py::count<char, int>(characters, 5, 'l') -> 2
+            pyfunc::count<char, int>(characters, 5, 'l') -> 2
         ```
 
     </div>
 
-    <hr>
+    ---
 
     <div id="count-t-array">
 
     #### 4.4 . count in templatize arrays
 
-    ### ``py::count<type, size, type2>(std::array<type, size_t size>, type search)``
+    ### ``pyfunc::count<type, size, type2>(std::array<type, size_t size>, type search)``
 
     - type 
         ``` c++
@@ -562,22 +597,22 @@ To use the `py-func` library, include the header file `py-func.h` in your C++ so
         ``` c++
         std::array<int, 5> numbers= {0, 0, 0, 1, 2}
 
-            py::count<int, 5, int>(numbers, 0)** -> 3
+            pyfunc::count<int, 5, int>(numbers, 0)** -> 3
 
-            py::count<int, 5, long int>(numbers, 0)** -> 3  
+            pyfunc::count<int, 5, long int>(numbers, 0)** -> 3  
         ```
 
-        <hr>
+        ---
 
         ``` c++
         std::array<char, 5> characters= {'h', 'e', 'l', 'l', 'o'}
 
-            py::count<char, 5, int>(characters, 'l') -> 3
+            pyfunc::count<char, 5, int>(characters, 'l') -> 3
         ```
 
     </div>
 
-<hr>
+---
 
 - ### 5 . join 
 
@@ -587,7 +622,7 @@ To use the `py-func` library, include the header file `py-func.h` in your C++ so
 
     #### 5.1 . join strings
 
-    ### ``py::join(std::string source, type join_by)``
+    ### ``pyfunc::join(std::string source, type join_by)``
 
     - type
         ``` c++
@@ -601,22 +636,22 @@ To use the `py-func` library, include the header file `py-func.h` in your C++ so
         ``` c++
         std::string str = "2468";
       
-            py::join(str, ",") -> "2,4,6,8"
+            pyfunc::join(str, ",") -> "2,4,6,8"
 
-            py::join(str, "--") -> "2--4--6--8"
+            pyfunc::join(str, "--") -> "2--4--6--8"
 
-            py::join(str, '|') -> "2|4|6|8"
+            pyfunc::join(str, '|') -> "2|4|6|8"
         ```
 
     </div>
 
-    <hr>
+    ---
 
     <div id="join-vector">
 
     #### 5.2 . join 
     
-    ### ``py::join(std::vector<type> source, type join_by)``
+    ### ``pyfunc::join(std::vector<type> source, type join_by)``
 
     - type
         ``` c++
@@ -630,22 +665,22 @@ To use the `py-func` library, include the header file `py-func.h` in your C++ so
         ``` c++
         std::vector<std::string> strs = {"abc","def","ghi","jkl"}
  
-            py::join(strs, "+") -> "abc+def+ghi+jkl"
+            pyfunc::join(strs, "+") -> "abc+def+ghi+jkl"
 
-            py::join(strs, "_____") -> "abc_____def_____ghi_____jkl"
+            pyfunc::join(strs, "_____") -> "abc_____def_____ghi_____jkl"
 
-            py::join(strs, '|') -> "abc|def|ghi|jkl"
+            pyfunc::join(strs, '|') -> "abc|def|ghi|jkl"
         ```
 
     </div>
 
-    <hr>
+    ---
     
     <div id="join-array">
 
     #### 5.3 . join arrays
 
-    ### ``py::join(type *array, size_t size, type join_by);``
+    ### ``pyfunc::join(type *array, size_t size, type join_by);``
 
     - type
         ``` c++
@@ -664,28 +699,28 @@ To use the `py-func` library, include the header file `py-func.h` in your C++ so
         ``` c++
         std::string strs[] = {"abc","def","ghi","jkl"}
      
-            py::join(strs, 4, "||||") -> "abc||||def||||ghi||||jkl"
+            pyfunc::join(strs, 4, "||||") -> "abc||||def||||ghi||||jkl"
 
-            py::join(strs, 4, "-") -> "abc-def-ghi-jkl" 
+            pyfunc::join(strs, 4, "-") -> "abc-def-ghi-jkl" 
         ```
 
-        <hr>
+        ---
 
         ``` c++
         char characters[6] = {'h', 'e', 'l', 'l', 'o', '\0'}
         
-            py::join(characters, 5, ',') -> "h,e,l,l,o"
+            pyfunc::join(characters, 5, ',') -> "h,e,l,l,o"
         ```
 
     </div>
 
     <div id="join-t-array">
 
-    <hr>
+    ---
 
     #### 5.4 . join templatize arrays
 
-    ### ``py::join(std::array<type, size_t size>, type join_by)``
+    ### ``pyfunc::join(std::array<type, size_t size>, type join_by)``
 
     - type 
         ``` c++
@@ -703,15 +738,15 @@ To use the `py-func` library, include the header file `py-func.h` in your C++ so
         ``` c++
         std::array<char, 5> characters = {'0', '0', '0', '1', '2'}
 
-            py::join(characters, '=') -> "0=0=0=1=2"
+            pyfunc::join(characters, '=') -> "0=0=0=1=2"
         ```
         
-        <hr>
+        ---
 
         ``` c++
         std::array<std::string, 4> strs = {"a","b","c","d"}
 
-            py::join(strs, ">") -> "a>b>c>d"
+            pyfunc::join(strs, ">") -> "a>b>c>d"
         ```
 
     </div>
