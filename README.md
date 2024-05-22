@@ -141,13 +141,13 @@ If you only need specific functionalities, include the required headers separate
         ``` c++  
         std::string string = "0123456789"
 
-            pyfunc::slice(string, 0, 5, 1)** -> "01234"
+            pyfunc::slice(string, 0, 5, 1) -> "01234"
 
-            pyfunc::slice(string, 0, 10, 2)** -> "02468"
+            pyfunc::slice(string, 0, 10, 2) -> "02468"
 
-            pyfunc::slice(string, -1, -5, -1)** -> "9876"
+            pyfunc::slice(string, -1, -5, -1) -> "9876"
 
-            pyfunc::slice(string, -1, -10, -2)** -> "97531"
+            pyfunc::slice(string, -1, -10, -2) -> "97531"
 
         ```
 
@@ -359,7 +359,7 @@ If you only need specific functionalities, include the required headers separate
         ``` c++
         int numbers[10] = {0, 0, 0, 1, 2, 3, 3, 4, 4, 5}
      
-            pyfunc::replace(numbers,10, 0, 100)** -> {100, 100, 100, 1, 2, 3, 3, 4, 4, 5}
+            pyfunc::replace(numbers,10, 0, 100) -> {100, 100, 100, 1, 2, 3, 3, 4, 4, 5}
         ```
 
         ---
@@ -367,7 +367,7 @@ If you only need specific functionalities, include the required headers separate
         ``` c++
         char characters[6] = {'h', 'e', 'l', 'l', 'o', '\0'}
 
-            pyfunc::replace(characters, 5, 'l', 'L')** -> {'h', 'e', 'L', 'L', 'o', '\0'}
+            pyfunc::replace(characters, 5, 'l', 'L') -> {'h', 'e', 'L', 'L', 'o', '\0'}
         ```
 
     </div>
@@ -437,7 +437,7 @@ If you only need specific functionalities, include the required headers separate
         ``` c++
         std::string str = "1,2,3,4,5";`
 
-            pyfunc::split(str, ",")** -> {"1", "2", "3", "4", "5"}
+            pyfunc::split(str, ",") -> {"1", "2", "3", "4", "5"}
         ```
 
         ---
@@ -522,9 +522,9 @@ If you only need specific functionalities, include the required headers separate
         ``` c++
         std::vector<int> numbers = {1, 1, 2, 2, 3, 4, 5, 5, 6}
 
-            pyfunc::count<int, int>(numbers, 1)** -> 2
+            pyfunc::count<int, int>(numbers, 1) -> 2
 
-            pyfunc::count<int, int>(numbers, 6)** -> 1
+            pyfunc::count<int, int>(numbers, 6) -> 1
         ```
 
         ---
@@ -605,9 +605,9 @@ If you only need specific functionalities, include the required headers separate
         ``` c++
         std::array<int, 5> numbers= {0, 0, 0, 1, 2}
 
-            pyfunc::count<int, 5, int>(numbers, 0)** -> 3
+            pyfunc::count<int, 5, int>(numbers, 0) -> 3
 
-            pyfunc::count<int, 5, long int>(numbers, 0)** -> 3  
+            pyfunc::count<int, 5, long int>(numbers, 0) -> 3  
         ```
 
         ---
