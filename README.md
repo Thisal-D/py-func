@@ -1,20 +1,28 @@
-# py-func.h
-
----
+# py-func
 
 ## Introduction
-The py-func library header a comprehensive collection of C++ implementations for common string, vector, and array manipulation tasks.
+The `py-func` library provides a comprehensive collection of C++ implementations for common string, vector, and array manipulation tasks. This library aims to mimic some of the functionalities found in Python, making it easier to perform these operations in C++.
+
+## Features
+- String manipulation
+- Vector and array operations
+- Utility functions
+
+## Usage
+
+### Including the Entire Library
+To use the entire `py-func` library, include the master header file `py-func.h` in your C++ source files:
+
+```cpp
+#include "py-func.h"
+```
 
 ---
 
-### Usage
-To use whole `py-func` library, include the header file `py-func.h` in your C++ source files:
+### Including Individual Functions
+If you only need specific functionalities, include the required headers separately:
 
-```
-#include "py-func.h"
-```
-to use seperate function, use required header seperatly
-```
+``` cpp
 #include "count.h"
 #include "join.h"
 #include "range.h"
@@ -25,7 +33,7 @@ to use seperate function, use required header seperatly
 
 ---
 
-## Overview (Functions)
+## Overview
 
 - **slice** : 
     - <a href="#generate-seq-nums">Generate a sequence of integers</a>
