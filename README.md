@@ -35,7 +35,7 @@ If you only need specific functionalities, include the required headers separate
 
 ## Overview
 
-- **slice** : 
+- **range** : 
     - <a href="#generate-seq-nums">Generate a sequence of integers</a>
      
 - **slice** :
