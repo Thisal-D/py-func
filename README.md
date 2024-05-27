@@ -5,8 +5,8 @@ The `py-func` library provides a comprehensive collection of C++ implementations
 
 ## Features
 - String manipulation
-- Vector and array operations
-- Utility functions
+- Vector manipulation
+- Array manipulation
 
 ## Usage
 
